@@ -1,1 +1,1833 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Co-Director: Agentic Generative Storytelling</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Google Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- MathJax for LaTeX Rendering -->
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'style', 'textarea', 'pre', 'code']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #374151; /* gray-800 */
+            background-color: #faf9f7; /* paper */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .container-lg {
+            max-width: 1024px; /* Equivalent to Tailwind's max-w-5xl or similar */
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .delicate-shadow {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+        }
+        .header-link {
+            color: #6b7280; /* gray-500 */
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: color 0.3s ease, border-color 0.3s ease;
+            padding-bottom: 2px;
+        }
+        .header-link:hover {
+            color: #111827; /* gray-900 */
+            border-color: #9ca3af; /* gray-400 */
+        }
+        .btn-outline {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px solid #d1d5db; /* gray-300 */
+            color: #4b5563; /* gray-600 */
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500; /* font-medium */
+            text-transform: uppercase;
+            letter-spacing: 0.05em; /* tracking-wider */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-outline:hover {
+            background-color: #f3f4f6; /* gray-100 */
+            color: #111827; /* gray-900 */
+        }
+        .icon-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #4b5563; /* gray-600 */
+            transition: color 0.3s ease;
+        }
+        .icon-link:hover {
+            color: #111827; /* gray-900 */
+        }
+        .icon-link .material-icons {
+            font-size: 1.25rem; /* text-xl */
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1rem;
+        }
+        @media (min-width: 768px) { /* md */
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .md\:text-center {
+                 text-align: center;
+            }
+        }
+         .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1rem;
+        }
+        @media (min-width: 768px) { /* md */
+            .grid-2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .text-balance {
+            text-wrap: balance;
+        }
+         .text-center { text-align: center; }
+         .text-lg { font-size: 1.125rem; }
+         .text-xl { font-size: 1.25rem; }
+         .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+         .text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+         .font-light { font-weight: 300; }
+         .font-normal { font-weight: 400; }
+         .font-medium { font-weight: 500; }
+         .font-semibold { font-weight: 600; }
+         .mb-2 { margin-bottom: 0.5rem; }
+         .mb-3 { margin-bottom: 0.75rem; }
+         .mb-4 { margin-bottom: 1rem; }
+         .mb-6 { margin-bottom: 1.5rem; }
+         .mb-8 { margin-bottom: 2rem; }
+         .mb-10 { margin-bottom: 2.5rem; }
+         .mb-12 { margin-bottom: 3rem; }
+         .mb-24 { margin-bottom: 6rem; }
+         .mt-4 { margin-top: 1rem; }
+         .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+         .pt-24 { padding-top: 6rem; }
+         .pb-12 { padding-bottom: 3rem; }
+         .px-4 { padding-left: 1rem; padding-right: 1rem; }
+         .p-4 { padding: 1rem; }
+         .p-1-5 { padding: 0.375rem; }
+         .rounded-lg { border-radius: 0.5rem; }
+         .rounded-xl { border-radius: 0.75rem; }
+         .rounded-2xl { border-radius: 1rem; }
+         .w-full { width: 100%; }
+         .h-auto { height: auto; }
+         .mx-auto { margin-left: auto; margin-right: auto; }
+         .text-gray-900 { color: #111827; }
+         .text-gray-800 { color: #1f2937; }
+         .text-gray-600 { color: #4b5563; }
+         .text-gray-500 { color: #6b7280; }
+         .text-gray-400 { color: #9ca3af; }
+         .bg-white { background-color: #ffffff; }
+         .border { border-width: 1px; }
+         .border-gray-100 { border-color: #f3f4f6; }
+         .border-gray-300 { border-color: #d1d5db; }
+         .uppercase { text-transform: uppercase; }
+         .tracking-wider { letter-spacing: 0.05em; }
+         .tracking-widest { letter-spacing: 0.1em; }
+         .text-center { text-align: center; }
+         .text-justify { text-align: justify; }
+         .italic { font-style: italic; }
+         .flex { display: flex; }
+         .justify-center { justify-content: center; }
+         .items-center { align-items: center; }
+         .gap-2 { gap: 0.5rem; }
+         .gap-6 { gap: 1.5rem; }
+         .gap-8 { gap: 2rem; }
+         .flex-wrap { flex-wrap: wrap; }
+         .flex-col { flex-direction: column; }
+         .relative { position: relative; }
+         .aspect-video { aspect-ratio: 16 / 9; }
+         .object-cover { object-fit: cover; }
+         .overflow-hidden { overflow: hidden; }
+         .w-\[70\%\] { width: 70%; }
+         .max-w-3xl { max-width: 48rem; }
+         .max-w-4xl { max-width: 56rem; }
+         .max-w-5xl { max-width: 64rem; }
+         .leading-relaxed { line-height: 1.625; }
+         .h-px { height: 1px; }
+         .bg-gradient-to-r { background: linear-gradient(to right, var(--tw-gradient-stops)); }
+         .from-transparent { --tw-gradient-from: transparent; --tw-gradient-to: rgba(0,0,0,0); }
+         .via-gray-200 { --tw-gradient-stops: var(--tw-gradient-from), #e5e7eb, var(--tw-gradient-to); }
+         .to-transparent { --tw-gradient-to: transparent; }
+         .my-12 { margin-top: 3rem; margin-bottom: 3rem; }
+         .hidden { display: none; }
+         .transition-opacity { transition: opacity 0.3s ease-in-out; }
+         .duration-300 { transition-duration: 300ms; }
+         .text-\[\#ff6666\] { color: #ff6666; }
+         .text-\[\#2eb886\] { color: #2eb886; }
+         .text-\[\#cda434\] { color: #cda434; }
+         .text-\[\#0000a0\] { color: #0000a0; }
+
+         /* Dark Mode Overrides */
+         .dark .delicate-shadow {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+         }
+         .dark .bg-white {
+            background-color: #1e293b; /* slate-800 */
+         }
+         .dark .border-gray-100 {
+            border-color: #334155; /* slate-700 */
+         }
+         .dark .text-gray-900 {
+            color: #f8fafc; /* slate-50 */
+         }
+         .dark .text-gray-600 {
+            color: #94a3b8; /* slate-400 */
+         }
+         .dark .bg-gray-50 {
+            background-color: #0f172a; /* slate-900 */
+         }
+
+         /* Pipeline Hotspots */
+         .pipeline-container {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+         }
+         .hotspot {
+            fill: rgba(255, 255, 255, 0.03); /* Very subtle default glass */
+            stroke: rgba(0, 0, 0, 0.05); /* Subtle outline to define the box */
+            stroke-width: 1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+         }
+         .dark .hotspot {
+            fill: rgba(255, 255, 255, 0.02);
+            stroke: rgba(255, 255, 255, 0.05);
+         }
+         .hotspot:hover {
+            fill: rgba(59, 130, 246, 0.15); /* Obvious blue highlight */
+            stroke: rgba(59, 130, 246, 0.6); /* Defined blue border */
+            stroke-width: 2;
+         }
+         .dark .hotspot:hover {
+            fill: rgba(96, 165, 250, 0.1);
+            stroke: rgba(96, 165, 250, 0.6);
+         }
+         /* Red hotspots for feedback loops */
+         .hotspot-red:hover {
+            fill: rgba(239, 68, 68, 0.15); /* Obvious red highlight */
+            stroke: rgba(239, 68, 68, 0.6); /* Defined red border */
+            stroke-width: 2;
+         }
+         .dark .hotspot-red:hover {
+            fill: rgba(248, 113, 113, 0.1);
+            stroke: rgba(248, 113, 113, 0.6);
+         }
+         #component-detail-box {
+            min-height: 140px;
+            transition: all 0.3s ease;
+         }
+    </style>
+</head>
+<body class="text-gray-800 font-light antialiased bg-[#faf9f7] dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300">
+
+    <!-- Theme Toggle -->
+    <div class="fixed top-6 right-6 z-50">
+        <button id="theme-toggle" class="p-3 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-gray-200 dark:border-slate-700 shadow-lg hover:scale-110 transition-all flex items-center justify-center">
+            <span id="theme-toggle-dark-icon" class="hidden material-icons text-yellow-500">&#xe51c;</span>
+            <span id="theme-toggle-light-icon" class="hidden material-icons text-slate-700 dark:text-slate-300">&#xef5e;</span>
+        </button>
+    </div>
+
+    <header class="container-lg pt-24 pb-12 px-4 text-center">
+        <!-- GROUP 1: Header -->
+        <div class="mb-4">
+            <img src="./assets/logo.png" alt="Robot icon" class="w-32 h-32 mx-auto rounded-full" style="background-color: transparent; padding: 0;">
+        </div>
+        <h1 class="text-3xl md:text-4xl tracking-tight font-semibold leading-tight mb-4 text-gray-900 max-w-3xl mx-auto text-balance">
+            Co-Director: Agentic Generative Storytelling
+        </h1>
+
+        <!-- Authors -->
+        <div class="text-md font-normal text-gray-600 mb-3 max-w-4xl mx-auto">
+            <p>
+                <a href="https://people.csail.mit.edu/yalesong" target="_blank" class="header-link">Yale Song</a><sup>1</sup>, 
+                <a href="https://yiwen-song.github.io/" target="_blank" class="header-link">Yiwen Song</a><sup>1</sup>, 
+                <a href="https://www.linkedin.com/in/nicklosier/" target="_blank" class="header-link">Nick Losier</a><sup>1</sup>, 
+                <a href="https://www.linkedin.com/in/nathan-hodson-56294699/" target="_blank" class="header-link">Nathan Hodson</a><sup>1</sup>, 
+                <a href="https://www.linkedin.com/in/ye-jin-01880319/" target="_blank" class="header-link">Ye Jin</a><sup>1</sup>, 
+                <a href="https://www.linkedin.com/in/shoudong-zhu/" target="_blank" class="header-link">Rhyard Zhu</a><sup>1</sup>,
+            </p>
+            <p>
+                <a href="https://www.cs.cmu.edu/~yxu2/" target="_blank" class="header-link">Yan Xu</a><sup>1</sup>, 
+                <a href="https://people.csail.mit.edu/drdaniel/" target="_blank" class="header-link">Daniel Vlasic</a><sup>1</sup>,
+                <a href="https://www.linkedin.com/in/carina-claassen/" target="_blank" class="header-link">Carina Claassen</a><sup>1</sup>, 
+                <a href="https://www.linkedin.com/in/jasminenleon/" target="_blank" class="header-link">Jasmine Leon</a><sup>1</sup>, 
+                <a href="https://www.linkedin.com/in/lvgk/" target="_blank" class="header-link">Khanh G. LeViet</a><sup>1</sup>, 
+            </p>
+            <p>
+                <a href="https://www.linkedin.com/in/zackchomyn/" target="_blank" class="header-link">Zack Chomyn</a><sup>1</sup>, 
+                <a href="https://www.linkedin.com/in/joetimmons/" target="_blank" class="header-link">Joe Timmons</a><sup>1</sup>, 
+                <a href="https://www.onebigfluke.com/" target="_blank" class="header-link">Brett Slatkin</a><sup>1</sup>, 
+                <a href="https://scott.ai/aboutme/" target="_blank" class="header-link">Scott Penberthy</a><sup>1</sup>, 
+                and <a href="https://tomas.pfister.fi/" target="_blank" class="header-link">Tomas Pfister</a><sup>1</sup>
+            </p>
+        </div>
+        <!-- Affiliation -->
+        <div class="flex flex-wrap justify-center gap-6 text-sm font-light text-gray-500 mb-10 tracking-wide">
+            <span><sup>1</sup>Google Inc.</span>
+        </div>
+
+        <!-- Links -->
+        <div class="flex flex-wrap justify-center gap-8 text-lg font-medium mb-12">
+            <div class="px-8 py-3 rounded-full border border-gray-200 dark:border-slate-800 text-gray-400 dark:text-slate-600 flex items-center gap-3 cursor-not-allowed bg-gray-50/50 dark:bg-slate-900/50 italic">
+                <i class="fa-regular fa-file-pdf"></i>
+                Paper (Coming Soon)
+            </div>
+            <a href="https://github.com/GoogleCloudPlatform/genmedia-izumi-agent" target="_blank" class="px-8 py-3 rounded-full border border-gray-300 dark:border-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 hover:text-black dark:hover:text-white transition-all flex items-center gap-3 no-underline shadow-sm hover:shadow-md">
+                <i class="fa-brands fa-github text-xl"></i>
+                Code
+            </a>
+            <div class="px-8 py-3 rounded-full border border-gray-200 dark:border-slate-800 text-gray-400 dark:text-slate-600 flex items-center gap-3 cursor-not-allowed bg-gray-50/50 dark:bg-slate-900/50 italic">
+                <i class="fa-solid fa-database"></i>
+                Data (Coming Soon)
+            </div>
+        </div>
+
+
+
+    </header>
+
+    <!-- GROUP 2: Introduction -->
+    <section class="container-lg px-4 mb-24">
+        <h2 class="text-xs uppercase tracking-[0.2em] font-semibold text-gray-400 mb-6 text-center">Abstract</h2>
+
+        <!-- Abstract -->
+        <div class="mb-12">
+            <p class="text-gray-600 leading-relaxed text-lg text-justify font-light max-w-3xl mx-auto">
+                While diffusion models generate high-fidelity video clips, transforming them into coherent storytelling engines remains challenging. Current agentic pipelines automate this via chained modules but suffer from semantic drift and cascading failures due to independent, handcrafted prompting. We present <strong>Co-Director</strong>, a hierarchical multi-agent framework formalizing video storytelling as a global optimization problem. To ensure semantic coherence, we introduce hierarchical parameterization: a multi-armed bandit globally identifies promising creative directions, while a local multimodal self-refinement loop mitigates identity drift and ensures sequence-level consistency. This balances the exploration of novel narrative strategies with the exploitation of effective creative configurations. For evaluation, we introduce <strong>GenAD-Bench</strong>, a 400-scenario dataset of fictional products for personalized advertising. Experiments demonstrate that Co-Director significantly outperforms state-of-the-art baselines, offering a principled approach that seamlessly generalizes to broader cinematic narratives.
+            </p>
+        </div>
+
+        <!-- Technical Approach -->
+        <div>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-slate-100 mb-4 md:text-center">Co-Director Multi-Agent Architecture</h3>
+            <div class="w-full bg-white dark:bg-slate-800 delicate-shadow border border-gray-100 dark:border-slate-700 rounded-2xl p-4 mb-4 text-center relative">
+                <div class="pipeline-container">
+                    <img id="pipeline-img" src="./assets/pipeline.jpg" alt="Co-Director System Pipeline" class="w-full max-w-4xl mx-auto h-auto rounded-xl">
+                    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 2468 933" preserveAspectRatio="xMidYMid meet">
+                        <!-- 1. Input -->
+                        <rect class="hotspot" x="7" y="4" width="311" height="401" rx="15" onmouseover="showDetail('input')" />
+
+                        <!-- 2. Orchestrator Group -->
+                        <rect class="hotspot" x="388" y="4" width="606" height="85" rx="10" onmouseover="showDetail('orch')" />
+                        <rect class="hotspot" x="426" y="121" width="530" height="72" rx="5" onmouseover="showDetail('orch-prompt')" />
+                        <rect class="hotspot" x="426" y="207" width="530" height="73" rx="5" onmouseover="showDetail('orch-visuals')" />
+                        <rect class="hotspot" x="426" y="294" width="530" height="73" rx="5" onmouseover="showDetail('orch-config')" />
+
+                        <!-- 3. MAB Group -->
+                        <rect class="hotspot" x="1164" y="4" width="1010" height="103" rx="10" onmouseover="showDetail('mab')" />
+                        <rect class="hotspot" x="1178" y="115" width="320" height="280" rx="10" onmouseover="showDetail('mab-strategy')" />
+                        <rect class="hotspot" x="1515" y="115" width="310" height="280" rx="10" onmouseover="showDetail('mab-mode')" />
+                        <rect class="hotspot" x="1840" y="115" width="320" height="280" rx="10" onmouseover="showDetail('mab-archetype')" />
+
+                        <!-- 3b. Parameters & Feedback -->
+                        <rect class="hotspot" x="1015" y="105" width="130" height="90" rx="10" onmouseover="showDetail('warm-start')" />
+                        <rect class="hotspot" x="1015" y="243" width="130" height="77" rx="10" onmouseover="showDetail('theta-param')" />
+                        <rect class="hotspot" x="2180" y="25" width="275" height="161" rx="10" onmouseover="showDetail('reward-signal')" />
+
+                        <!-- 4. Pre-Production Group -->
+                        <rect class="hotspot" x="35" y="475" width="715" height="80" rx="10" onmouseover="showDetail('pre')" />
+                        <rect class="hotspot" x="85" y="580" width="265" height="115" rx="5" onmouseover="showDetail('pre-brief')" />
+                        <rect class="hotspot" x="85" y="740" width="265" height="115" rx="5" onmouseover="showDetail('pre-storyline')" />
+                        <rect class="hotspot hotspot-red" x="300" y="705" width="80" height="80" rx="30" onmouseover="showDetail('pre-storyline-feedback')" />
+                        <rect class="hotspot" x="435" y="580" width="265" height="115" rx="5" onmouseover="showDetail('pre-assets')" />
+                        <rect class="hotspot" x="435" y="740" width="265" height="115" rx="5" onmouseover="showDetail('pre-storyboard')" />
+
+                        <!-- 5. Production Group -->
+                        <rect class="hotspot" x="820" y="475" width="890" height="80" rx="10" onmouseover="showDetail('prod')" />
+                        <rect class="hotspot" x="880" y="560" width="405" height="85" rx="5" onmouseover="showDetail('prod-frame')" />
+                        <rect class="hotspot" x="880" y="670" width="405" height="85" rx="5" onmouseover="showDetail('prod-video')" />
+                        <rect class="hotspot" x="880" y="780" width="405" height="85" rx="5" onmouseover="showDetail('prod-audio')" />
+                        <rect class="hotspot" x="1350" y="560" width="300" height="85" rx="5" onmouseover="showDetail('prod-frames-out')" />
+                        <rect class="hotspot hotspot-red" x="1595" y="525" width="80" height="80" rx="30" onmouseover="showDetail('prod-frames-feedback')" />
+                        <rect class="hotspot" x="1350" y="670" width="300" height="85" rx="5" onmouseover="showDetail('prod-clips-out')" />
+                        <rect class="hotspot" x="1350" y="780" width="300" height="85" rx="5" onmouseover="showDetail('prod-audio-out')" />
+
+                        <!-- 6. Post-Production Group -->
+                        <rect class="hotspot" x="1780" y="475" width="390" height="120" rx="10" onmouseover="showDetail('post')" />
+                        <rect class="hotspot" x="1805" y="610" width="350" height="210" rx="15" onmouseover="showDetail('post-editing')" />
+
+                        <!-- 7. Judge & Final -->
+                        <rect class="hotspot" x="2225" y="475" width="180" height="160" rx="15" onmouseover="showDetail('judge')" />
+                        <rect class="hotspot" x="2250" y="710" width="135" height="110" rx="15" onmouseover="showDetail('final')" />
+                    </svg>
+                </div>
+                <p class="text-xs tracking-widest text-gray-500 uppercase mt-4">Figure 1: Co-Director Multi-Agent Pipeline Overview (Hover over components to see details)</p>
+            </div>
+
+            <!-- Detail Box -->
+            <div id="component-detail-box" class="max-w-4xl mx-auto bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30 rounded-2xl p-6 mb-4 text-center flex flex-col justify-center">
+                <div id="detail-default" class="text-gray-500 dark:text-slate-400 italic">
+                    Hover over the system components above to explore the hierarchical multi-agent architecture.
+                </div>
+                <div id="detail-content" class="hidden">
+                    <h4 id="detail-title" class="text-blue-600 dark:text-blue-400 font-bold uppercase tracking-widest text-sm mb-2"></h4>
+                    <p id="detail-text" class="text-gray-700 dark:text-slate-200 text-lg font-light leading-relaxed"></p>
+                </div>
+            </div>
+
+            <!-- Example Box (Placeholder) -->
+            <div id="component-example-box" class="max-w-4xl mx-auto bg-white dark:bg-slate-800 delicate-shadow border border-gray-100 dark:border-slate-700 rounded-2xl p-6 mb-8 hidden transition-all duration-500">
+                <div id="example-content" class="w-full">
+                    <!-- Dynamic content will be injected here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GROUP 3: Qualitative Results (videos) -->
+    <section class="container-lg px-4 mb-24">
+        <h2 class="text-xs uppercase tracking-[0.2em] font-semibold text-gray-400 mb-12 text-center">Qualitative Results</h2>
+
+        <!-- Overall Qualitative -->
+        <h3 class="text-xl font-medium text-gray-900 dark:text-slate-100 mb-6 md:text-center uppercase tracking-wider">Application: Generative Video Advertising</h3>
+        <p class="text-gray-600 dark:text-slate-400 leading-relaxed text-lg text-justify font-light max-w-3xl mx-auto mb-6">
+            We demonstrate Co-Director on digital advertising because it represents a rigorous "creative stress test" for generative AI. While abstract or experimental cinema often allows for loose visual interpretation, professional advertising requires high-fidelity creativity bound by absolute precision: brand identities must remain inviolable, product features must be visually consistent across disparate scenes, and the artistic direction must align with specific demographic expectations—all within a compressed narrative window.
+        </p>
+        <p class="text-center text-sm text-gray-500 italic mb-12">
+            Note: Videos are played at 2x speed; you can adjust playback settings and audio via the video controls for a better experience.
+        </p>
+
+        <!-- 3x3 Video Grid -->
+        <div id="video-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
+            <!-- Sample 1 -->
+            <div class="flex flex-col sample-item">
+                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">BarBaz-Scrub</p>
+                <div class="video-wrapper relative w-full aspect-[9/16] bg-black delicate-shadow rounded-2xl overflow-hidden mb-4 border border-gray-100 dark:border-slate-800">
+                    <video src="./assets/ad_examples/005_stereotypical_iter_0_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                </div>
+                <button onclick="showSampleDetail(0)" class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors border border-blue-100 dark:border-blue-900/30 rounded-lg py-2 px-4 bg-white dark:bg-slate-800/50 delicate-shadow">
+                    <i class="fas fa-expand-alt mr-2"></i> Input Prompt
+                </button>
+            </div>
+
+            <!-- Sample 2 -->
+            <div class="flex flex-col sample-item">
+                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">FooTrent-Case</p>
+                <div class="video-wrapper relative w-full aspect-[9/16] bg-black delicate-shadow rounded-2xl overflow-hidden mb-4 border border-gray-100 dark:border-slate-800">
+                    <video src="./assets/ad_examples/072_unconventional_iter_0_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                </div>
+                <button onclick="showSampleDetail(1)" class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors border border-blue-100 dark:border-blue-900/30 rounded-lg py-2 px-4 bg-white dark:bg-slate-800/50 delicate-shadow">
+                    <i class="fas fa-expand-alt mr-2"></i> Input Prompt
+                </button>
+            </div>
+
+            <!-- Sample 3 -->
+            <div class="flex flex-col sample-item">
+                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">Wandom-Yarn</p>
+                <div class="video-wrapper relative w-full aspect-[9/16] bg-black delicate-shadow rounded-2xl overflow-hidden mb-4 border border-gray-100 dark:border-slate-800">
+                    <video src="./assets/ad_examples/040_unconventional_iter_0_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                </div>
+                <button onclick="showSampleDetail(2)" class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors border border-blue-100 dark:border-blue-900/30 rounded-lg py-2 px-4 bg-white dark:bg-slate-800/50 delicate-shadow">
+                    <i class="fas fa-expand-alt mr-2"></i> Input Prompt
+                </button>
+            </div>
+
+            <!-- Sample 4 -->
+            <div class="flex flex-col sample-item">
+                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">FredBaz-Jam</p>
+                <div class="video-wrapper relative w-full aspect-[9/16] bg-black delicate-shadow rounded-2xl overflow-hidden mb-4 border border-gray-100 dark:border-slate-800">
+                    <video src="./assets/ad_examples/045_stereotypical_iter_2_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                </div>
+                <button onclick="showSampleDetail(3)" class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors border border-blue-100 dark:border-blue-900/30 rounded-lg py-2 px-4 bg-white dark:bg-slate-800/50 delicate-shadow">
+                    <i class="fas fa-expand-alt mr-2"></i> Input Prompt
+                </button>
+            </div>
+
+            <!-- Sample 5 -->
+            <div class="flex flex-col sample-item">
+                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">FredBaz-Mix</p>
+                <div class="video-wrapper relative w-full aspect-[9/16] bg-black delicate-shadow rounded-2xl overflow-hidden mb-4 border border-gray-100 dark:border-slate-800">
+                    <video src="./assets/ad_examples/046_stereotypical_iter_1_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                </div>
+                <button onclick="showSampleDetail(4)" class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors border border-blue-100 dark:border-blue-900/30 rounded-lg py-2 px-4 bg-white dark:bg-slate-800/50 delicate-shadow">
+                    <i class="fas fa-expand-alt mr-2"></i> Input Prompt
+                </button>
+            </div>
+
+            <!-- Sample 6 -->
+            <div class="flex flex-col sample-item">
+                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">Xyzzy-Bear</p>
+                <div class="video-wrapper relative w-full aspect-[9/16] bg-black delicate-shadow rounded-2xl overflow-hidden mb-4 border border-gray-100 dark:border-slate-800">
+                    <video src="./assets/ad_examples/052_unconventional_iter_0_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                </div>
+                <button onclick="showSampleDetail(5)" class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors border border-blue-100 dark:border-blue-900/30 rounded-lg py-2 px-4 bg-white dark:bg-slate-800/50 delicate-shadow">
+                    <i class="fas fa-expand-alt mr-2"></i> Input Prompt
+                </button>
+            </div>
+
+            <!-- Sample 7 -->
+            <div class="flex flex-col sample-item">
+                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">EveFoo-Scoot</p>
+                <div class="video-wrapper relative w-full aspect-[9/16] bg-black delicate-shadow rounded-2xl overflow-hidden mb-4 border border-gray-100 dark:border-slate-800">
+                    <video src="./assets/ad_examples/064_unconventional_iter_0_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                </div>
+                <button onclick="showSampleDetail(6)" class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors border border-blue-100 dark:border-blue-900/30 rounded-lg py-2 px-4 bg-white dark:bg-slate-800/50 delicate-shadow">
+                    <i class="fas fa-expand-alt mr-2"></i> Input Prompt
+                </button>
+            </div>
+
+            <!-- Sample 8 -->
+            <div class="flex flex-col sample-item">
+                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">MaloyBaz-Mask</p>
+                <div class="video-wrapper relative w-full aspect-[9/16] bg-black delicate-shadow rounded-2xl overflow-hidden mb-4 border border-gray-100 dark:border-slate-800">
+                    <video src="./assets/ad_examples/071_unconventional_iter_3_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                </div>
+                <button onclick="showSampleDetail(7)" class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors border border-blue-100 dark:border-blue-900/30 rounded-lg py-2 px-4 bg-white dark:bg-slate-800/50 delicate-shadow">
+                    <i class="fas fa-expand-alt mr-2"></i> Input Prompt
+                </button>
+            </div>
+
+            <!-- Sample 9 -->
+            <div class="flex flex-col sample-item">
+                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">Grault-Gown</p>
+                <div class="video-wrapper relative w-full aspect-[9/16] bg-black delicate-shadow rounded-2xl overflow-hidden mb-4 border border-gray-100 dark:border-slate-800">
+                    <video src="./assets/ad_examples/032_stereotypical_iter_3_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                </div>
+                <button onclick="showSampleDetail(8)" class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors border border-blue-100 dark:border-blue-900/30 rounded-lg py-2 px-4 bg-white dark:bg-slate-800/50 delicate-shadow">
+                    <i class="fas fa-expand-alt mr-2"></i> Input Prompt
+                </button>
+            </div>
+        </div>
+
+        <!-- Detail Viewer Template (Moves in DOM) -->
+        <div id="sample-detail-viewer" class="hidden col-span-full mb-12 bg-white dark:bg-slate-900 delicate-shadow rounded-3xl p-8 border border-blue-100 dark:border-blue-900/30 overflow-hidden relative">
+            <button onclick="hideSampleDetail()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 dark:hover:text-slate-200 transition-colors">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <div class="flex flex-col lg:flex-row gap-10 items-center">
+                <!-- Large Images -->
+                <div class="flex gap-6 w-full lg:w-auto shrink-0">
+                    <div class="flex-1 lg:w-56 h-56 bg-white rounded-2xl border border-gray-100 dark:border-slate-800 p-6 flex items-center justify-center delicate-shadow">
+                        <img id="detail-logo" src="" class="max-w-full max-h-full object-contain">
+                    </div>
+                    <div class="flex-1 lg:w-56 h-56 bg-white rounded-2xl border border-gray-100 dark:border-slate-800 p-6 flex items-center justify-center delicate-shadow">
+                        <img id="detail-product" src="" class="max-w-full max-h-full object-contain">
+                    </div>
+                </div>
+                <!-- Text content -->
+                <div class="flex-1 text-center lg:text-left">
+                    <h4 id="detail-product-name" class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-4 uppercase tracking-widest underline decoration-blue-500 underline-offset-8 decoration-4">Product Name</h4>
+                    <p id="detail-prompt-text" class="text-xl text-gray-600 dark:text-slate-400 leading-relaxed italic font-light">"Prompt Text..."</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Set all videos with class 'speed-2x' to 2.0x playback speed on load
+            document.addEventListener('DOMContentLoaded', function() {
+                const videos = document.querySelectorAll('video.speed-2x');
+                videos.forEach(v => {
+                    v.playbackRate = 2.0;
+                });
+            });
+        </script>
+    </section>
+
+    <!-- GROUP 4: GenAD-Bench -->
+    <section class="container-lg px-4 mb-24">
+
+        <div class="mb-12">
+            <h3 class="text-xl font-medium text-gray-900 dark:text-slate-100 mb-4 md:text-center">GenAD-Bench</h3>
+            <div class="mb-8">
+                <img src="assets/mosaic_genad_bench.jpg" alt="GenAD-Bench Mosaic" class="w-full max-w-6xl mx-auto h-auto rounded-xl shadow-lg">
+            </div>
+            <p class="text-gray-600 dark:text-slate-400 leading-relaxed text-lg text-justify font-light max-w-3xl mx-auto mb-8">
+                <strong>GenAD-Bench</strong> is a rigorous benchmark designed to evaluate end-to-end generative workflows. It features 400 unique scenarios across 200 fictional products and 50 brands. By utilizing fictional entities, the benchmark prevents models from defaulting to memorized training priors, ensuring performance reflects true reasoning.
+            </p>
+            <div class="flex justify-center mb-8">
+                <a href="genad_bench.html" class="inline-flex items-center px-8 py-3 bg-blue-600 text-white font-bold rounded-full hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    Explore GenAD-Bench Hub
+                </a>
+            </div>
+        </div>
+
+        <!-- Quantitative Results -->
+        <div>
+            <h3 class="text-xl font-medium text-gray-900 dark:text-slate-100 mb-4 md:text-center">Evaluation on GenAD-Bench</h3>
+            <p class="text-gray-600 dark:text-slate-400 leading-relaxed text-lg text-justify font-light max-w-3xl mx-auto mb-8">
+                We evaluate Co-Director against monolithic models and prior agentic frameworks (AniMaker, MovieAgent) using a multi-dimensional MLLM-as-a-Judge suite. Our MAB formulation ensures efficient convergence toward optimal configurations.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-4">
+                <div class="p-4 bg-gray-50 dark:bg-slate-900/50 rounded-xl border border-gray-100 dark:border-slate-800 cursor-help transition-all hover:border-blue-500/50 hover:bg-blue-50/30 dark:hover:bg-blue-900/10" onmouseover="showMetric('vaf')" onmouseout="hideMetric()">
+                    <span class="font-semibold text-gray-900 dark:text-slate-100">VAF:</span> <span class="text-gray-500 dark:text-slate-400 text-sm">Visual Asset Fidelity</span>
+                </div>
+                <div class="p-4 bg-gray-50 dark:bg-slate-900/50 rounded-xl border border-gray-100 dark:border-slate-800 cursor-help transition-all hover:border-blue-500/50 hover:bg-blue-50/30 dark:hover:bg-blue-900/10" onmouseover="showMetric('da')" onmouseout="hideMetric()">
+                    <span class="font-semibold text-gray-900 dark:text-slate-100">DA:</span> <span class="text-gray-500 dark:text-slate-400 text-sm">Demographic Alignment</span>
+                </div>
+                <div class="p-4 bg-gray-50 dark:bg-slate-900/50 rounded-xl border border-gray-100 dark:border-slate-800 cursor-help transition-all hover:border-blue-500/50 hover:bg-blue-50/30 dark:hover:bg-blue-900/10" onmouseover="showMetric('ma')" onmouseout="hideMetric()">
+                    <span class="font-semibold text-gray-900 dark:text-slate-100">MA:</span> <span class="text-gray-500 dark:text-slate-400 text-sm">Marketing Appeal</span>
+                </div>
+                <div class="p-4 bg-gray-50 dark:bg-slate-900/50 rounded-xl border border-gray-100 dark:border-slate-800 cursor-help transition-all hover:border-blue-500/50 hover:bg-blue-50/30 dark:hover:bg-blue-900/10" onmouseover="showMetric('vq')" onmouseout="hideMetric()">
+                    <span class="font-semibold text-gray-900 dark:text-slate-100">VQ:</span> <span class="text-gray-500 dark:text-slate-400 text-sm">Visual Quality</span>
+                </div>
+            </div>
+
+            <!-- Metric Definition Box -->
+            <div id="metric-detail-box" class="max-w-4xl mx-auto bg-blue-50/30 dark:bg-blue-900/10 border border-blue-100/50 dark:border-blue-900/20 rounded-xl p-4 mb-8 text-center hidden transition-all duration-300">
+                <p id="metric-definition" class="text-gray-600 dark:text-slate-300 text-sm font-light italic"></p>
+            </div>
+
+            <div class="w-full bg-white dark:bg-slate-900 delicate-shadow border border-gray-100 dark:border-slate-800 rounded-2xl p-6 mb-8 overflow-x-auto text-center">
+                <h4 class="text-sm font-bold text-gray-900 dark:text-slate-100 mb-2 uppercase tracking-widest text-center">Table 1: Evaluation on GenAD-Bench</h4>
+                <p class="text-gray-600 dark:text-slate-400 text-sm mb-6 max-w-3xl mx-auto italic">
+                    This table compares how Co-Director performs against industry-leading models using automated measurements. It shows that our method consistently achieves higher scores in preserving brand identities and creating videos that truly resonate with specific target audiences.
+                </p>
+                <table class="w-full text-sm text-left border-collapse mx-auto max-w-4xl mb-4">
+                    <thead>
+                        <tr class="border-b border-gray-200 dark:border-slate-700">
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100">Method</th>
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100 text-center">VAF ↑</th>
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100 text-center">DA ↑</th>
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100 text-center">MA ↑</th>
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100 text-center">VQ ↑</th>
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100 text-center">Avg. ↑</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 dark:text-slate-400">
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td colspan="6" class="py-2 px-4 italic font-medium text-xs bg-gray-50 dark:bg-slate-800/30">Proprietary Models</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">Creatify</td>
+                            <td class="py-2 px-4 text-center">23.2</td>
+                            <td class="py-2 px-4 text-center">16.2</td>
+                            <td class="py-2 px-4 text-center">19.5</td>
+                            <td class="py-2 px-4 text-center">29.5</td>
+                            <td class="py-2 px-4 text-center">22.1</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">HeyGen</td>
+                            <td class="py-2 px-4 text-center">42.9</td>
+                            <td class="py-2 px-4 text-center">59.3</td>
+                            <td class="py-2 px-4 text-center">39.5</td>
+                            <td class="py-2 px-4 text-center">45.0</td>
+                            <td class="py-2 px-4 text-center">46.7</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">Kling 3.0 Omni</td>
+                            <td class="py-2 px-4 text-center">62.0</td>
+                            <td class="py-2 px-4 text-center">70.3</td>
+                            <td class="py-2 px-4 text-center">56.0</td>
+                            <td class="py-2 px-4 text-center">45.3</td>
+                            <td class="py-2 px-4 text-center">58.4</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">Veo 3.1</td>
+                            <td class="py-2 px-4 text-center">60.0</td>
+                            <td class="py-2 px-4 text-center">80.8</td>
+                            <td class="py-2 px-4 text-center">63.2</td>
+                            <td class="py-2 px-4 text-center">50.5</td>
+                            <td class="py-2 px-4 text-center">63.6</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">Wan 2.6</td>
+                            <td class="py-2 px-4 text-center">67.0</td>
+                            <td class="py-2 px-4 text-center">71.5</td>
+                            <td class="py-2 px-4 text-center">62.5</td>
+                            <td class="py-2 px-4 text-center">58.9</td>
+                            <td class="py-2 px-4 text-center">65.0</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td colspan="6" class="py-2 px-4 italic font-medium text-xs bg-gray-50 dark:bg-slate-800/30">Open-Source Models</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">LTX-2.3</td>
+                            <td class="py-2 px-4 text-center">23.5</td>
+                            <td class="py-2 px-4 text-center">56.0</td>
+                            <td class="py-2 px-4 text-center">30.6</td>
+                            <td class="py-2 px-4 text-center">24.4</td>
+                            <td class="py-2 px-4 text-center">33.6</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">AniMaker</td>
+                            <td class="py-2 px-4 text-center">53.1</td>
+                            <td class="py-2 px-4 text-center">81.3</td>
+                            <td class="py-2 px-4 text-center">60.3</td>
+                            <td class="py-2 px-4 text-center">53.9</td>
+                            <td class="py-2 px-4 text-center">62.2</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">MovieAgent</td>
+                            <td class="py-2 px-4 text-center">61.2</td>
+                            <td class="py-2 px-4 text-center">81.3</td>
+                            <td class="py-2 px-4 text-center">66.4</td>
+                            <td class="py-2 px-4 text-center">52.4</td>
+                            <td class="py-2 px-4 text-center">65.3</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">Base Agentic Pipeline (T=1)</td>
+                            <td class="py-2 px-4 text-center">68.5</td>
+                            <td class="py-2 px-4 text-center">78.4</td>
+                            <td class="py-2 px-4 text-center">67.1</td>
+                            <td class="py-2 px-4 text-center">59.9</td>
+                            <td class="py-2 px-4 text-center">68.5</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">Random Search Baseline (T=4)</td>
+                            <td class="py-2 px-4 text-center">77.0</td>
+                            <td class="py-2 px-4 text-center">85.8</td>
+                            <td class="py-2 px-4 text-center">75.6</td>
+                            <td class="py-2 px-4 text-center">64.1</td>
+                            <td class="py-2 px-4 text-center">75.7</td>
+                        </tr>
+                        <tr class="bg-blue-50/50 dark:bg-blue-900/20 font-bold text-gray-900 dark:text-slate-100">
+                            <td class="py-2 px-4">Co-Director (T=4)</td>
+                            <td class="py-2 px-4 text-center">82.1</td>
+                            <td class="py-2 px-4 text-center">91.4</td>
+                            <td class="py-2 px-4 text-center">82.0</td>
+                            <td class="py-2 px-4 text-center">70.2</td>
+                            <td class="py-2 px-4 text-center">81.4</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-[10px] text-gray-500 dark:text-slate-500 mt-4 mb-12 italic text-justify px-4 border-b border-gray-100 dark:border-slate-800 pb-8">All metrics are scaled [0, 100]. VAF: Visual Asset Fidelity, DA: Demographic Alignment, MA: Marketing Appeal, VQ: Visual Quality.</p>
+
+                <h4 class="text-sm font-bold text-gray-900 dark:text-slate-100 mb-2 uppercase tracking-widest text-center">Mean Opinion Scores (MOS)</h4>
+                <p class="text-gray-600 dark:text-slate-400 text-sm mb-6 max-w-3xl mx-auto italic">
+                    To ensure the results actually look good to people, we asked human judges to rate the videos on a scale of 1 to 5. These scores confirm that humans prefer our results over the baselines.
+                </p>
+                <table class="w-full text-sm text-left border-collapse mx-auto max-w-4xl">
+                    <thead>
+                        <tr class="border-b border-gray-200 dark:border-slate-700">
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100">Method</th>
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100 text-center">VAF</th>
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100 text-center">DA</th>
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100 text-center">MA</th>
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100 text-center">VQ</th>
+                            <th class="py-3 px-4 font-bold text-gray-900 dark:text-slate-100 text-center">Avg.</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 dark:text-slate-400">
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">AniMaker</td>
+                            <td class="py-2 px-4 text-center">3.34</td>
+                            <td class="py-2 px-4 text-center">3.71</td>
+                            <td class="py-2 px-4 text-center">2.72</td>
+                            <td class="py-2 px-4 text-center">2.50</td>
+                            <td class="py-2 px-4 text-center">3.07</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">MovieAgent</td>
+                            <td class="py-2 px-4 text-center">3.64</td>
+                            <td class="py-2 px-4 text-center">4.06</td>
+                            <td class="py-2 px-4 text-center">2.85</td>
+                            <td class="py-2 px-4 text-center">2.31</td>
+                            <td class="py-2 px-4 text-center">3.22</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">Wan 2.6</td>
+                            <td class="py-2 px-4 text-center">3.84</td>
+                            <td class="py-2 px-4 text-center">3.65</td>
+                            <td class="py-2 px-4 text-center">3.13</td>
+                            <td class="py-2 px-4 text-center">3.29</td>
+                            <td class="py-2 px-4 text-center">3.48</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">Kling 3.0 Omni</td>
+                            <td class="py-2 px-4 text-center">3.93</td>
+                            <td class="py-2 px-4 text-center">4.13</td>
+                            <td class="py-2 px-4 text-center">3.07</td>
+                            <td class="py-2 px-4 text-center">3.21</td>
+                            <td class="py-2 px-4 text-center">3.59</td>
+                        </tr>
+                        <tr class="border-b border-gray-50 dark:border-slate-800/50">
+                            <td class="py-2 px-4">Veo 3.1</td>
+                            <td class="py-2 px-4 text-center">3.90</td>
+                            <td class="py-2 px-4 text-center">4.20</td>
+                            <td class="py-2 px-4 text-center">3.40</td>
+                            <td class="py-2 px-4 text-center">3.32</td>
+                            <td class="py-2 px-4 text-center">3.71</td>
+                        </tr>
+                        <tr class="bg-blue-50/50 dark:bg-blue-900/20 font-bold text-gray-900 dark:text-slate-100">
+                            <td class="py-2 px-4">Co-Director (Ours)</td>
+                            <td class="py-2 px-4 text-center">4.22</td>
+                            <td class="py-2 px-4 text-center">4.41</td>
+                            <td class="py-2 px-4 text-center">3.65</td>
+                            <td class="py-2 px-4 text-center">3.58</td>
+                            <td class="py-2 px-4 text-center">3.96</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-[10px] text-gray-500 dark:text-slate-500 mt-4 italic text-justify px-4">Average of 5 human raters per video on a [1–5] scale.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Directing: Aesthetic Archetypes Section -->
+    <section class="container-lg px-4 mb-24">
+        <h3 class="text-xl font-medium text-gray-900 dark:text-slate-100 mb-8 md:text-center">Digital Directing: Controlling the "Look and Feel"</h3>
+        <p class="text-gray-600 dark:text-slate-400 leading-relaxed text-lg text-justify font-light max-w-3xl mx-auto mb-8">
+            Co-Director's Multi-Armed Bandit navigates a factored creative action space, selecting <strong>Aesthetic Archetypes</strong> that dictate the sensory realization of the video. This allows the system to "re-shoot" the same product prompt to match different moods and strategic intents.
+        </p>
+
+        <!-- Archetype Definitions -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+            <div class="p-4 bg-white dark:bg-slate-900/50 rounded-xl border border-gray-100 dark:border-slate-800 shadow-sm">
+                <h4 class="text-xs font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-widest mb-2">Clarity / Energy</h4>
+                <p class="text-sm text-gray-600 dark:text-slate-400">"The Pop Look": High-key lighting with no dark shadows; clean, vibrant, and exciting.</p>
+            </div>
+            <div class="p-4 bg-white dark:bg-slate-900/50 rounded-xl border border-gray-100 dark:border-slate-800 shadow-sm">
+                <h4 class="text-xs font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-2">Cinematic Premium</h4>
+                <p class="text-sm text-gray-600 dark:text-slate-400">"The Movie Look": Dramatic chiaroscuro lighting and deep shadows; expensive and legendary.</p>
+            </div>
+            <div class="p-4 bg-white dark:bg-slate-900/50 rounded-xl border border-gray-100 dark:border-slate-800 shadow-sm">
+                <h4 class="text-xs font-bold text-purple-600 dark:text-purple-400 uppercase tracking-widest mb-2">Minimalist Focus</h4>
+                <p class="text-sm text-gray-600 dark:text-slate-400">"The Gallery Look": Macro-zooms and clean backgrounds to highlight tiny textures in a museum-like setting.</p>
+            </div>
+            <div class="p-4 bg-white dark:bg-slate-900/50 rounded-xl border border-gray-100 dark:border-slate-800 shadow-sm">
+                <h4 class="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest mb-2">Kinetic Grit</h4>
+                <p class="text-sm text-gray-600 dark:text-slate-400">"The Raw Look": Dark, moody lighting with handheld or drone motion; authentic and intense.</p>
+            </div>
+        </div>
+
+        <!-- Aesthetic Archetype Examples -->
+        <div class="w-full bg-white dark:bg-slate-900 delicate-shadow border border-gray-100 dark:border-slate-800 rounded-2xl p-6 text-center">
+            <!-- Tabs -->
+            <div class="flex justify-center gap-4 mb-6">
+                <button onclick="switchArchetypeExample(1)" id="archetype-tab-1" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-blue-600 text-white shadow-lg">Example 1</button>
+                <button onclick="switchArchetypeExample(2)" id="archetype-tab-2" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">Example 2</button>
+            </div>
+
+            <!-- Example 1 Content -->
+            <div id="archetype-example-1" class="transition-opacity duration-500">
+                <img src="./assets/aesthetic_archetype_example1.jpg" alt="Grault-Heel Aesthetic Archetypes" class="w-full max-w-5xl mx-auto h-auto rounded-xl">
+                <p class="text-xs tracking-widest text-gray-500 dark:text-slate-400 uppercase mt-4 italic">Example: Grault-Heel by Grault Design (Stereotypical)</p>
+            </div>
+
+            <!-- Example 2 Content -->
+            <div id="archetype-example-2" class="hidden transition-opacity duration-500">
+                <img src="./assets/aesthetic_archetype_example2.jpg" alt="Con-Kibble Aesthetic Archetypes" class="w-full max-w-5xl mx-auto h-auto rounded-xl">
+                <p class="text-xs tracking-widest text-gray-500 dark:text-slate-400 uppercase mt-4 italic">Example: Con-Kibble by Consectetur Co. (Unconventional)</p>
+            </div>
+        </div>
+    </section>
+
+     <!-- GROUP 5: More results (ViStoryBench) -->
+    <section class="container-lg px-4 mb-24">
+        <h2 class="text-xs uppercase tracking-[0.2em] font-semibold text-gray-400 mb-12 text-center">Generalization: ViStoryBench</h2>
+        
+        <p class="text-gray-600 leading-relaxed text-lg text-justify font-light max-w-3xl mx-auto mb-12">
+            To demonstrate generality beyond advertising, we evaluate Co-Director on <strong>ViStoryBench</strong>. Our framework maintains robust temporal consistency and character identity across long-horizon sequences, even when constrained to rigid, pre-defined narrative structures.
+        </p>
+
+        <!-- Result Browser -->
+        <div class="w-full bg-white dark:bg-slate-900 delicate-shadow border border-gray-100 dark:border-slate-800 rounded-2xl p-6">
+            <!-- Story Selectors -->
+            <div class="flex flex-wrap justify-center gap-2 mb-4" id="vistory-selectors"></div>
+
+            <!-- Active Story Title -->
+            <div class="text-center mb-6">
+                <h3 id="vistory-active-title" class="text-lg font-medium text-gray-900 dark:text-slate-100"></h3>
+            </div>
+
+            <!-- Browser Area -->
+            <div class="space-y-8">
+                <!-- Top: Thumbnails -->
+                <div class="flex overflow-x-auto gap-3 pb-4 px-2 scrollbar-thin" id="vistory-thumbnails" style="scrollbar-width: thin;"></div>
+
+                <!-- Middle: Large Image (Full Width) -->
+                <div class="bg-gray-50 dark:bg-slate-800/50 rounded-xl p-6 flex items-center justify-center">
+                    <img id="vistory-main-img" src="" class="max-w-5xl w-full h-auto rounded-lg shadow-md">
+                </div>
+
+                <!-- Bottom: Metadata (Grid) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="p-4 bg-blue-50/50 dark:bg-blue-900/10 rounded-xl border border-blue-100/50 dark:border-blue-800/30">
+                        <h4 class="text-[10px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-2">Action</h4>
+                        <p id="vistory-action" class="text-sm text-gray-700 dark:text-slate-300 italic"></p>
+                    </div>
+                    <div class="p-4 bg-purple-50/50 dark:bg-purple-900/10 rounded-xl border border-purple-100/50 dark:border-purple-800/30">
+                        <h4 class="text-[10px] font-bold text-purple-600 dark:text-purple-400 uppercase tracking-widest mb-2">Plot</h4>
+                        <p id="vistory-plot" class="text-sm text-gray-700 dark:text-slate-300"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-gray-400 py-12 text-center text-xs font-medium tracking-widest uppercase">
+        <p>&copy; 2026 The Authors. All rights reserved.</p>
+    </footer>
+
+    <script src="assets/vistory_data.js"></script>
+     <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Initial icon state
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+            document.documentElement.classList.add('dark');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        // Component Descriptions
+        const descriptions = {
+            'input': {
+                title: 'Input Layer',
+                text: 'The starting point of the pipeline. It ingests the raw user prompt ( $p_{user}$  ) and reference visuals ( $I_{ref}$  ), which are then parsed and annotated into structured constraints ( $\\widehat{p}_{user}$  ) and semantic visual representations ( $\\widehat{I}_{ref}$  ).',
+                example: {
+                    type: 'input',
+                    prompt: 'Create a portrait-mode video advertisement. Foo Corp introduces the Foo-City (A compact hatchback designed for urban efficiency and versatility in diverse driving conditions.) targeting Female drivers aged 25-34 in Singapore who are interested in easy parking in tight urban centers and city living. Reserve the last 1 second for an ending scene to highlight the provided logo image.',
+                    visuals: [
+                        { src: './assets/driving_example/product.jpg', label: 'Product' },
+                        { src: './assets/driving_example/logo.jpg', label: 'Logo' }
+                    ]
+                }
+            },
+            'orch': {
+                title: 'Orchestrator Agent ( $Φ_{orch}$  )',
+                text: 'The central management hub that coordinates the execution flow. It drives a global optimization loop for $T$ iterations, interfacing with the MAB to sample creative configurations and forming the global conditioning context $θ = (\\widehat{p}_{user}, \\widehat{I}_{ref}, θ)$.'
+            },
+            'orch-prompt': {
+                title: 'Structured Prompt ( $\\widehat{p}_{user}$  )',
+                text: 'A decomposed representation of the user prompt into explicit constraints: brand identity, product category, and target demographics (gender, age, location, and interest).',
+                example: {
+                    type: 'structured-prompt',
+                    constraints: {
+                        'Brand': 'Foo Corp',
+                        'Product': 'Foo-City (Compact Hatchback)',
+                        'Demographics': 'Female drivers aged 25-34 in Singapore who are interested in easy parking in tight urban centers and city living.',
+                        'Target Duration': '30s',
+                        'Orientation': 'Portrait'
+                    }
+                }
+            },
+            'orch-visuals': {
+                title: 'Annotated Ref. Visuals ( $\\widehat{I}_{ref}$  )',
+                text: 'Reference images provided by the user, automatically enhanced with captions and semantic roles (e.g., product, logo, protagonist) to ensure accurate preservation during generation.',
+                example: {
+                    type: 'annotated-visuals',
+                    visuals: [
+                        {
+                            src: './assets/driving_example/product.jpg',
+                            role: 'product',
+                            caption: 'A red metallic hatchback car featuring sleek headlights and multi-spoke silver alloy wheels. A blue lightning bolt-shaped logo is prominently displayed on its front grille, and the car\'s body and windows are covered in water droplets.'
+                        },
+                        {
+                            src: './assets/driving_example/logo.jpg',
+                            role: 'logo',
+                            caption: 'A sleek, stylized logo featuring a metallic silver-grey letter \'F\' with prominent blue accents and a glossy finish, overlapping with a dynamic blue lightning bolt that also has a metallic, glossy appearance. Below the graphic, the text "FOO CORP" is displayed in bold, black, sans-serif, uppercase letters.'
+                        }
+                    ]
+                }
+            },
+            'orch-config': {
+                title: 'Creative Configuration ( $θ$  )',
+                text: 'A high-level parameter tuple $θ = (θ_{cs}, θ_{nm}, θ_{aa})$ sampled by the MAB. These parameters act as "digital direction," steering all downstream agents toward a unified creative intent.',
+                example: {
+                    type: 'creative-config',
+                    strategy: 'informational',
+                    mode: 'vignette',
+                    archetype: 'clarity_energy',
+                    instructions: {
+                        'Storyline Agent': "The narrative will consist of a series of brief, self-contained vignettes, each acting as a 'slice of life' that subtly illustrates the functional utility and logical advantages of the core entity. There will be no overarching plot or climactic moment; instead, the focus is on a consistent, upbeat vibe and the continuous presentation of verifiable attributes. The primary subject should be integrated into these moments as a natural, indispensable element, demonstrating its superior attributes through relatable, everyday interactions.",
+                        'Keyframe Agent': "Visuals should employ high-key illumination with low contrast, creating a bright and open aesthetic that suggests transparency and vitality. Environments should appear clean, well-lit, and energetic. The primary subject should be framed prominently within these luminous settings, with lighting emphasizing its form and functional details, ensuring its clarity and positive perception without harsh shadows.",
+                        'Video Agent': "Camera kinematics should be dynamic and energetic, utilizing high-temporal motion with fast cuts to maintain a sense of arousal and vitality. Transitions between vignettes should be brisk and seamless. Camera movements should be fluid and purposeful, rather than static, often following the action or revealing the core entity in an engaging manner, contributing to the overall energetic pace.",
+                        'Audio Agent': "Background audio should be upbeat and high-tempo, featuring music that evokes a sense of transparency, vitality, and positive energy. Any narration or voiceover should be delivered with a clear, confident, and engaging tone, focusing on conveying factual information, functional utility, and logical advantages in an articulate and persuasive manner."
+                    }
+                }
+            },
+            'mab': {
+                title: 'Multi-Armed Bandit (MAB) Optimizer',
+                text: 'A principled exploration-exploitation engine using the UCB1 algorithm. It searches the creative latent space to identify the optimal configuration of strategy, mode, and archetype for the given user intent.'
+            },
+            'mab-strategy': {
+                title: 'Creative Strategy ( $θ_{cs}$  )',
+                text: 'Grounds the ad in marketing theory by selecting between Informational (functional utility), Transformational (psychological appeal), or Comparative (competitive positioning) strategies.'
+            },
+            'mab-mode': {
+                title: 'Narrative Mode ( $θ_{nm}$  )',
+                text: 'Dictates the storytelling structure: Analytical (argument-based), Vignette (atmospheric slices-of-life), or Narrative Drama (character-driven conflict and resolution).'
+            },
+            'mab-archetype': {
+                title: 'Aesthetic Archetype ( $θ_{aa}$  )',
+                text: 'Controls the sensory realization: Clarity/Energy (high-key lighting), Cinematic Premium (chiaroscuro), Minimalist Focus (ASMR-style foley), or Kinetic Grit (handheld/FPV motion).'
+            },
+            'warm-start': {
+                title: 'LLM-Driven Warm Start',
+                text: 'An initialization phase where an LLM analyzes user demographics and product domains to set initial expected values for MAB arms, biasing early exploration toward theoretically sound configurations.',
+                example: {
+                    type: 'warm-start',
+                    recommendations: {
+                        strategy: 'informational',
+                        mode: 'vignette',
+                        archetype: 'clarity_energy'
+                    },
+                    reasoning: "The target audience consists of female drivers aged 25-34 in Singapore, who explicitly seek 'easy parking in tight urban centers and city living.' The product, Foo-City, is a 'compact hatchback designed for urban efficiency and versatility.' This clearly indicates a primary need for functional benefits and practical solutions to common urban challenges.\n\n1. **Creative Strategy: informational**\nGiven the user's explicit interest in 'easy parking' and 'urban efficiency,' an 'informational' strategy is paramount. It directly addresses these functional pain points by highlighting the Foo-City's practical attributes and verifiable advantages (e.g., compact size, maneuverability, potential parking assist features). This approach provides logical reasons for selection, which is crucial for a purchase as significant as a car, especially when addressing specific, practical needs.\n\n2. **Narrative Mode: vignette**\nWhile an 'analytical' mode could present facts, a 'vignette' mode is chosen to bring the 'informational' strategy to life in a more engaging manner. A series of brief, atmospheric 'slices of life' can effectively demonstrate the Foo-City's 'urban efficiency and versatility' across various scenarios. Imagine quick cuts showing: parking effortlessly in a tight spot, smoothly navigating a bustling street, loading shopping bags with ease, or pulling up to a vibrant city cafe. This approach visualizes the functional benefits in action, making them tangible and showcasing how the Foo-City seamlessly integrates into and enhances the target's 'city living' lifestyle without needing a complex plot or overt 'drama.' It builds a 'vibe' of convenience and ease.\n\n3. **Aesthetic Archetype: clarity_energy**\nThe 'clarity_energy' aesthetic perfectly complements both the 'informational' strategy and 'vignette' narrative. Its high-key illumination, fast cuts, and upbeat, high-tempo audio convey transparency, vitality, and modernity."
+                }
+            },
+            'theta-param': {
+                title: 'Creative Configuration ( $θ$  )',
+                text: 'The high-level parameter tuple $θ = (θ_{cs}, θ_{nm}, θ_{aa})$ sampled by the MAB and injected into sub-agents to ensure horizontal cohesiveness across the pipeline.',
+                example: {
+                    type: 'creative-config',
+                    strategy: 'informational',
+                    mode: 'vignette',
+                    archetype: 'clarity_energy',
+                    instructions: {
+                        'Downstream Impact': 'Ensures horizontal cohesiveness by injecting specific aesthetic and narrative priors into all sub-agents simultaneously.'
+                    }
+                }
+            },
+            'reward-signal': {
+                title: 'Factored Reward Signal ( $R$  )',
+                text: 'A multidimensional signal $R = (r_{cs}, r_{nm}, r_{aa})$ where each scalar independently evaluates a specific creative axis, enabling precise credit assignment for MAB optimization.',
+                example: {
+                    type: 'reward-signal',
+                    scores: {
+                        'Creative Strategy': 90,
+                        'Narrative Mode': 90,
+                        'Aesthetic Archetype': 95
+                    },
+                    justification: "The 'transformational' strategy effectively linked the car to psychological states of mastery and freedom. The 'analytical' mode successfully built a convincing argument through direct visuals. The 'kinetic_grit' archetype was executed flawlessly, with lighting and music enhancing the intense, authentic mood."
+                }
+            },
+            'pre': {
+                title: 'Pre-Production Agent ( $Φ_{pre}$  )',
+                text: 'Translates global constraints into a visual plan. It iteratively refines the storyline and assets using a multimodal self-refinement loop to ensure narrative cohesion and logical consistency.'
+            },
+            'pre-brief': {
+                title: 'Creative Brief ( $B$  )',
+                text: 'The "deep research" phase output. It expands product and demographic constraints into a localized context with cultural resonance and emotional goals.',
+                example: {
+                    type: 'text-block',
+                    title: 'Strategic Creative Brief',
+                    content: "**Creative Brief: Foo-City Urban Campaign - Singapore**\n\nThis campaign aims to forge a profound, transformational connection between the Foo-City compact hatchback and its target audience: female drivers aged 25-34 in Singapore. Moving beyond mere specifications, the objective is to articulate the psychological experience, social meaning, and emotional liberation that the Foo-City provides within the demanding, dynamic urban landscape of Singapore. It positions the Foo-City not just as a vehicle, but as an indispensable enabler of control, independence, and an authentic, empowered city lifestyle.\n\nVisually, the campaign will embrace a \"kinetic_grit\" aesthetic, characterized by low-key and shadowy lighting, emphasizing deep contrasts and a raw, authentic texture. Environments will feel intense and atmospheric, moving beyond the pristine veneer often associated with Singapore, instead exploring the city's underbelly—perhaps rain-slicked streets reflecting neon, the concrete textures of multi-story car parks, or the intense glow of night-time industrial or commercial zones. The Foo-City will be presented with dramatic lighting, often partially obscured by shadow or appearing in stark silhouette against intense urban backdrops.\n\nCamera kinematics will be dynamic and unstable, utilizing handheld or FPV drone perspectives to create a visceral and immediate experience. Pacing will be characterized by sharp, deliberate cuts, fostering a sense of intensity and raw energy. The motion should feel unpredictable and direct, immersing the viewer in the authenticity of navigating Singapore's urban flow."
+                }
+            },
+            'pre-storyline': {
+                title: 'Storyline ( $L$  )',
+                text: 'A scene-by-scene textual script. It is subjected to a local optimization loop (feedback descent) to ensure narrative flow, product integration, and prompt adherence.',
+                example: {
+                    type: 'storyline',
+                    scenes: [
+                        { topic: 'The Urban Gauntlet', action: 'A dynamic FPV drone shot opens, diving into a dimly lit, multi-story concrete car park in Singapore at night. The red metallic hatchback car, Foo-City, navigates a tight, shadowy ramp.' },
+                        { topic: 'Precision in Chaos', action: 'Neon signs reflect vividly on wet asphalt. A handheld-style camera tracks the red Foo-City as it executes a flawlessly precise parallel park into an impossibly tight spot.' },
+                        { topic: 'Unseen Paths', action: 'The Foo-City speeding with surprising agility through a narrow, almost hidden urban passage near a commercial zone. Gritty concrete, dramatically lit by industrial lights.' },
+                        { topic: 'Commanding the City', action: 'A sweeping, unstable FPV drone shot follows the car as it emerges onto an elevated urban highway, overlooking a vast cityscape under light rain.' },
+                        { topic: 'Your Advantage', action: 'A low-angle, intense, handheld camera shot pushes slowly into the front grille of the red metallic Foo-City, parked dramatically in deep shadow against a raw, concrete wall.' }
+                    ]
+                }
+            },
+            'pre-storyline-feedback': {
+                title: 'Feedback Descent (Storyline)',
+                text: 'A local optimization loop where the agent iteratively refines the storyline. It computes a "creative gradient" by comparing the current draft against global constraints, performing textual edits to maximize narrative flow and brand alignment.',
+                example: {
+                    type: 'evaluation',
+                    score: 91,
+                    breakdown: {
+                        'Hook Quality': 18,
+                        'Narrative Arc': 16,
+                        'Product Integration': 20,
+                        'Engagement': 19,
+                        'Prompt Adherence': 18
+                    },
+                    feedback: "The storyline demonstrates strong adherence to the 'transformational' creative strategy and 'kinetic_grit' aesthetic, effectively creating an intense and empowering urban narrative. The hook is excellent, immediately grabbing attention with a challenging, atmospheric FPV drone shot that sets a compelling tone. Product integration is flawless, positioning the Foo-City as the indispensable solution to urban challenges. The emotional resonance is high, with the driver's journey from focused determination to confident empowerment strongly aligning with the target audience's aspirations. However, the 'analytical' narrative mode was defined as 'without a temporal story arc or diegetic characters.' While the storyline maintains an argument-based progression, the consistent presence and emotional arc of the female driver leans towards a diegetic character, creating a slight inconsistency with this specific narrative mode instruction. Although her presence enhances emotional connection, it technically deviates from the 'no diegetic characters' constraint.",
+                    actionable: "For the next iteration, refine the portrayal of the female driver to align more strictly with the 'analytical' narrative mode's constraint of 'without diegetic characters.' Reframe her presence to be more of a symbolic representation or an observational element, rather than a character with an internal emotional journey. Ensure the focus remains purely on presenting logical arguments through visual demonstration of the car's capabilities, abstracting the 'driver' element to avoid a clear character arc."
+                }
+            },
+            'pre-assets': {
+                title: 'Visual Assets ( $V$  )',
+                text: 'Synthesized entities (characters, props, environments) required by the storyline. For characters, it generates context-aligned wardrobe collages to maintain identity.',
+                example: {
+                    type: 'character-asset',
+                    prompt: 'A 3-view character collage of a Singaporean female, 25-34 years old, with East Asian features, displaying a confident, determined, and independent expression. She is wearing a dark, sleek, long-sleeved technical fabric top in charcoal grey, dark slim-fit urban trousers, and black minimalist ankle boots.',
+                    collage: './assets/driving_example/character_collage.jpg'
+                }
+            },
+            'pre-storyboard': {
+                title: 'Storyboard ( $S$  )',
+                text: 'A detailed blueprint for every shot. It defines semantic descriptors, camera kinematics (scale, movement), temporal constraints, and global audio directives.',
+                example: {
+                    type: 'storyboard',
+                    audio: {
+                        voiceover: "The urban gauntlet is real. But your focus cuts through the gloom. Confront every challenge head-on. Master the chaos. Achieve ultimate precision. Effortless control in the tightest spaces. Find your own path. Outmaneuver all limits. Experience true urban freedom. Command your journey. Own this city. Empower your every powerful drive. This isn't merely a car. It's your advantage. Your undeniable urban edge. Forge your legend across the cityscape. Embrace powerful independence. Your moment is now. Foo Corp.",
+                        music: "Driving electronic synth, high tempo and intensity, modern authenticity, edgy atmosphere. Rhythmic pulses and atmospheric pads, no vocals."
+                    },
+                    shots: [
+                        {
+                            topic: 'The Urban Gauntlet',
+                            frame: 'A dynamic FPV drone perspective captures a red metallic hatchback car, its sleek headlights cutting through the gloom of a dimly lit car park in Singapore at night.',
+                            video: 'A dynamic FPV drone shot dives and tracks the red metallic hatchback car as it navigates the tight, shadowy ramp. Camera motion is unstable and direct.'
+                        },
+                        {
+                            topic: 'Precision in Chaos',
+                            frame: 'A red metallic hatchback car frozen just before initiating a precise parallel park into an impossibly tight spot between two vehicles on a rain-slicked street.',
+                            video: 'A handheld-style camera tracks the car as it smoothly and precisely executes a flawless parallel park. Sharp, unstable cuts emphasize confident movements.'
+                        },
+                        {
+                            topic: 'Unseen Paths',
+                            frame: 'The car frozen mid-speed, showing surprising agility through a narrow, almost hidden urban passage dramatically lit by industrial lights.',
+                            video: 'An FPV drone perspective tracks the car speeding through the passage. Water droplets create dynamic streaking effects. Unpredictable and direct camera movement.'
+                        },
+                        {
+                            topic: 'Commanding the City',
+                            frame: 'A red metallic hatchback car frozen as it emerges onto an elevated urban highway, overlooking a vast, sprawling Singaporean cityscape under a light, atmospheric rain.',
+                            video: 'A sweeping, unstable FPV drone shot follows the red metallic hatchback car as it dynamically emerges onto the elevated urban highway.'
+                        },
+                        {
+                            topic: 'Your Advantage',
+                            frame: 'A low-angle, intense, handheld perspective captures the front grille of a red metallic hatchback car, its sleek headlights a sharp, focused beam.',
+                            video: 'A low-angle, intense, handheld camera shot pushes slowly and deliberately into the front grille of the red metallic hatchback car.'
+                        },
+                        {
+                            topic: 'Brand Logo Reveal',
+                            frame: 'A red metallic hatchback car and a confident female driver captured in a dynamic, low-key lit, gritty urban setting, embodying a resilient urban spirit.',
+                            video: 'The car and driver are heroed for 6 seconds, then transition to a sleek, stylized Foo Corp logo for the final 2 seconds.'
+                        }
+                    ]
+                }
+            },
+            'prod': {
+                title: 'Production Agent ( $Φ_{prod}$  )',
+                text: 'The multimodal execution engine. It generates high-fidelity visual and auditory artifacts, conditioned on the storyboard and steered by the global creative configuration $θ$.'
+            },
+            'prod-frame': {
+                title: 'Keyframe Agent ( $Φ_{frame}$  )',
+                text: 'Mitigates identity drift by generating first-frame images for each scene. These serve as strong visual priors for the subsequent video generation process.'
+            },
+            'prod-video': {
+                title: 'Video Agent ( $Φ_{video}$  )',
+                text: 'Transforms keyframes into temporal video clips ( $C$  ). It conditions a diffusion model on the visual prior, parameterized by local scene descriptors and global creative configuration.'
+            },
+            'prod-audio': {
+                title: 'Audio Agent ( $Φ_{audio}$  )',
+                text: 'Synthesizes a unified global track ( $\\mathcal{A}$  ) by mixing text-to-speech voiceovers and background music, conditioned on the narrative mood and tempo specifications.'
+            },
+            'prod-frames-out': {
+                title: 'Keyframes ( $K$  )',
+                text: 'A sequence of high-resolution scene anchors. These are jointly evaluated by an MLLM to ensure character preservation and environmental continuity across shots.',
+                example: {
+                    type: 'keyframes',
+                    images: [
+                        './assets/driving_example/keyframe_0.jpg',
+                        './assets/driving_example/keyframe_1.jpg',
+                        './assets/driving_example/keyframe_2.jpg',
+                        './assets/driving_example/keyframe_3.jpg',
+                        './assets/driving_example/keyframe_4.jpg',
+                        './assets/driving_example/keyframe_5.jpg'
+                    ]
+                }
+            },
+            'prod-frames-feedback': {
+                title: 'MLLM Joint Evaluation',
+                text: 'A specialized validation loop where a Multimodal LLM inspects the entire sequence of generated keyframes. It verifies horizontal consistency, ensuring that character features, product details, and environmental lighting remain stable across all shots.',
+                example: {
+                    type: 'evaluation',
+                    score: 97,
+                    breakdown: {
+                        'Visual Consistency': 20,
+                        'Narrative Flow': 18,
+                        'Product Appeal': 20,
+                        'Engagement': 19,
+                        'Prompt Adherence': 20
+                    },
+                    feedback: "This sequence of images delivers an exceptionally strong and cohesive visual narrative for the Foo-City. The character, a young professional woman, is consistently portrayed with a confident demeanor, perfectly matching the reference and the prompt's 'progressive, confident vibe'. The Foo-City itself is the undeniable hero, rendered impeccably in terms of color, design, and branding, and its presence is central and appealing in every frame. The visual style, characterized by dark, moody, and wet urban settings, is highly consistent and effective, making the red car and its illuminated features truly pop. The narrative progression, from a confined parking garage to a bustling city street, then to a grittier alleyway, and finally to a panoramic city view from a highway, effectively showcases the Foo-City's ease of navigation in diverse urban environments. While the overall emotional impact is high due to the strong aesthetic and confident portrayal, a slightly more overt emotional expression (e.g., a subtle smile of satisfaction) from the driver in one of the concluding frames could further elevate the narrative's punch.",
+                    actionable: "To Image Generation Agent: For the final frame (Scene 3 in the 0-indexed sequence, corresponding to the highway/skyline shot), please subtly adjust the driver's facial expression to convey a sense of satisfaction or quiet triumph, rather than just focused concentration, to fully encapsulate the 'progressive, confident vibe' after navigating the city."
+                }
+            },
+            'prod-clips-out': {
+                title: 'Video Clips ( $C$  )',
+                text: 'The set of raw cinematic sequences. Each clip is generated to reflect the specific motion dynamics and lighting dictated by the chosen Aesthetic Archetype.',
+                example: {
+                    type: 'video-clips',
+                    clips: [
+                        './assets/driving_example/clip_0.mp4',
+                        './assets/driving_example/clip_1.mp4',
+                        './assets/driving_example/clip_2.mp4',
+                        './assets/driving_example/clip_3.mp4',
+                        './assets/driving_example/clip_4.mp4',
+                        './assets/driving_example/clip_5.mp4'
+                    ]
+                }
+            },
+            'prod-audio-out': {
+                title: 'Audio ( $A$  )',
+                text: 'The complete acoustic layer. It provides horizontal cohesiveness by aligning voice-over pacing with the visual transitions planned in the storyboard.',
+                example: {
+                    type: 'audio-assets',
+                    files: [
+                        { src: './assets/driving_example/voiceover.mp3', label: 'Synthesized Voiceover' },
+                        { src: './assets/driving_example/background_music.mp3', label: 'Background Music (Synth)' }
+                    ]
+                }
+            },
+            'post': {
+                title: 'Post-Production Agent ( $Φ_{post}$  )',
+                text: 'Consolidates the generated artifacts. It performs temporal concatenation and audio multiplexing to synchronize visual pacing with acoustic cues.'
+            },
+            'post-editing': {
+                title: 'Video Editing',
+                text: 'The automated assembly phase where clips are trimmed and transitions are applied, ensuring the final sequence adheres to the duration constraint.'
+            },
+            'judge': {
+                title: 'MLLM Judge',
+                text: 'Evaluates the final video against four dimensions: Visual Asset Fidelity (VAF), Demographic Alignment (DA), Marketing Appeal (MA), and Visual Quality (VQ).',
+                example: {
+                    type: 'evaluation',
+                    title: 'MLLM Post-Production Judge',
+                    score: 92,
+                    breakdown: {
+                        'Coherence': 18,
+                        'Visual Quality': 17,
+                        'Engagement': 19,
+                        'Prompt Adherence': 19,
+                        'Logical Consistency': 19
+                    },
+                    feedback: "The video is exceptionally well-produced and broadcast-ready. It masterfully implements the 'kinetic grit' aesthetic with consistent low-key lighting and dynamic camera movements. The voiceover is assertive and perfectly synchronized with the visual narrative, conveying the transformational message of urban freedom."
+                }
+            },
+            'final': {
+                title: 'Final Video ( $F$  )',
+                text: 'The polished end-to-end result. It represents a principled balance between the exploration of novel narratives and the exploitation of effective creative configurations.',
+                example: {
+                    type: 'final-video',
+                    src: './assets/driving_example/output.mp4'
+                }
+            }
+        };
+
+        function showDetail(id) {
+            const detail = descriptions[id];
+            if (!detail) return;
+            document.getElementById('detail-default').classList.add('hidden');
+            document.getElementById('detail-content').classList.remove('hidden');
+            document.getElementById('detail-title').innerText = detail.title;
+            document.getElementById('detail-text').innerText = detail.text;
+            
+            // Show example box
+            const exampleBox = document.getElementById('component-example-box');
+            const exampleContent = document.getElementById('example-content');
+            
+            if (detail.example) {
+                exampleBox.classList.remove('hidden');
+                renderExample(detail.example, exampleContent);
+            } else {
+                exampleBox.classList.add('hidden');
+            }
+
+            // Trigger MathJax typeset to render LaTeX in the newly added content
+            if (window.MathJax && window.MathJax.typesetPromise) {
+                window.MathJax.typesetPromise([
+                    document.getElementById('component-detail-box'), 
+                    document.getElementById('component-example-box')
+                ]).catch((err) => console.log('MathJax typeset failed: ' + err.message));
+            }
+        }
+
+        function renderExample(example, container) {
+            container.innerHTML = '';
+            if (!example) return;
+            
+            if (example.type === 'input') {
+                const html = `
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+                        <div>
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">User Prompt</h5>
+                            <div class="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-4 border border-gray-100 dark:border-slate-700/50">
+                                <p class="text-sm text-gray-600 dark:text-slate-300 italic leading-relaxed">"${example.prompt || ''}"</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Reference Visuals</h5>
+                            <div class="flex gap-4">
+                                ${(example.visuals || []).map((v, i) => `
+                                    <div class="flex-1">
+                                        <div class="aspect-square bg-gray-50 dark:bg-slate-900/50 rounded-xl border border-gray-100 dark:border-slate-700/50 p-2 flex items-center justify-center overflow-hidden">
+                                            <img src="${v.src}" alt="Reference ${i+1}" class="max-w-full max-h-full object-contain rounded-lg">
+                                        </div>
+                                        <p class="text-[10px] text-center mt-2 uppercase tracking-tighter text-gray-400">Ref Image ${i+1}</p>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'structured-prompt') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Structured Constraints (Parsing Output)</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                            ${Object.entries(example.constraints || {}).map(([label, val]) => `
+                                <div class="bg-gray-50 dark:bg-slate-900/50 border border-gray-100 dark:border-slate-700/50 rounded-xl p-3">
+                                    <span class="text-[9px] font-bold text-gray-400 uppercase block mb-1">${label}</span>
+                                    <span class="text-[12px] text-gray-700 dark:text-slate-200 font-medium leading-tight">${val}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'creative-config') {
+                const html = `
+                    <div class="text-left">
+                        <div class="flex items-center gap-4 mb-4">
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest">Digital Direction ( $θ$  )</h5>
+                            <div class="flex gap-2">
+                                <span class="bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 text-[9px] font-bold uppercase px-2 py-0.5 rounded">${example.strategy}</span>
+                                <span class="bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-300 text-[9px] font-bold uppercase px-2 py-0.5 rounded">${example.mode}</span>
+                                <span class="bg-emerald-100 dark:bg-emerald-900/40 text-emerald-600 dark:text-emerald-300 text-[9px] font-bold uppercase px-2 py-0.5 rounded">${example.archetype.replace('_', ' ')}</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            ${Object.entries(example.instructions || {}).map(([agent, text]) => `
+                                <div class="bg-gray-50 dark:bg-slate-900/50 border border-gray-100 dark:border-slate-700/50 rounded-xl p-4">
+                                    <h6 class="text-[10px] font-bold text-blue-500 dark:text-blue-400 uppercase mb-2">${agent} Instruction</h6>
+                                    <p class="text-[11px] text-gray-600 dark:text-slate-400 leading-relaxed italic">"${text}"</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'reward-signal') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Factored Reward Signal (MAB Feedback)</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            ${Object.entries(example.scores || {}).map(([label, score]) => `
+                                <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800/30 rounded-xl p-3 text-center">
+                                    <span class="text-[9px] uppercase tracking-wider text-emerald-600 dark:text-emerald-400 font-bold block mb-1">${label}</span>
+                                    <span class="text-lg font-bold text-gray-900 dark:text-slate-100">${score}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="bg-gray-50 dark:bg-slate-900/50 border border-gray-100 dark:border-slate-700/50 rounded-xl p-4">
+                            <h6 class="text-[10px] font-bold text-gray-400 uppercase mb-2">Optimization Justification</h6>
+                            <p class="text-[11px] text-gray-600 dark:text-slate-400 leading-relaxed italic">${example.justification}</p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'video-clips') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Generated Video Clips (Diffusion Output)</h5>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                            ${(example.clips || []).map((clip, i) => `
+                                <div class="group relative aspect-[9/16] bg-black rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all">
+                                    <video src="${clip}" autoplay loop muted playsinline class="w-full h-full object-cover"></video>
+                                    <div class="absolute bottom-0 inset-x-0 bg-black/60 backdrop-blur-[2px] p-1.5 translate-y-full group-hover:translate-y-0 transition-transform">
+                                        <p class="text-[9px] text-white font-bold uppercase tracking-tighter text-center">Clip ${i}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'audio-assets') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Synthesized Audio Layers</h5>
+                        <div class="space-y-4">
+                            ${(example.files || []).map(f => `
+                                <div class="bg-gray-50 dark:bg-slate-900/50 border border-gray-100 dark:border-slate-700/50 rounded-xl p-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-[10px] font-bold text-blue-500 uppercase tracking-wider">${f.label}</span>
+                                    </div>
+                                    <audio controls src="${f.src}" class="w-full h-8"></audio>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'final-video') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Final Composite Video (System Output)</h5>
+                        <div class="max-w-xs mx-auto aspect-[9/16] bg-black rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-700">
+                            <video src="${example.src}" controls autoplay loop class="w-full h-full object-cover"></video>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'annotated-visuals') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Annotated Reference Visuals (Inferred Semantic Roles)</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            ${(example.visuals || []).map(v => `
+                                <div class="flex gap-4 bg-gray-50 dark:bg-slate-900/50 rounded-xl p-4 border border-gray-100 dark:border-slate-700/50">
+                                    <div class="w-24 h-24 flex-shrink-0 bg-white dark:bg-slate-800 rounded-lg border border-gray-100 dark:border-slate-700 p-1 flex items-center justify-center overflow-hidden">
+                                        <img src="${v.src}" alt="${v.role}" class="max-w-full max-h-full object-contain">
+                                    </div>
+                                    <div class="flex flex-col justify-center">
+                                        <div class="inline-block px-2 py-0.5 bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 text-[10px] font-bold uppercase tracking-wider rounded mb-2 self-start">
+                                            Role: ${v.role}
+                                        </div>
+                                        <p class="text-[11px] text-gray-600 dark:text-slate-400 leading-tight">${v.caption || ''}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'warm-start') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">MAB Warm Start (LLM Recommendation)</h5>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/30 rounded-xl p-3">
+                                <span class="text-[10px] uppercase tracking-wider text-blue-500 dark:text-blue-400 font-bold block mb-1">Strategy</span>
+                                <span class="text-sm font-medium text-gray-900 dark:text-slate-100 capitalize">${example.recommendations?.strategy || ''}</span>
+                            </div>
+                            <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800/30 rounded-xl p-3">
+                                <span class="text-[10px] uppercase tracking-wider text-purple-500 dark:text-purple-400 font-bold block mb-1">Narrative</span>
+                                <span class="text-sm font-medium text-gray-900 dark:text-slate-100 capitalize">${example.recommendations?.mode || ''}</span>
+                            </div>
+                            <div class="bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-100 dark:border-emerald-800/30 rounded-xl p-3">
+                                <span class="text-[10px] uppercase tracking-wider text-emerald-500 dark:text-emerald-400 font-bold block mb-1">Aesthetic</span>
+                                <span class="text-sm font-medium text-gray-900 dark:text-slate-100 capitalize">${(example.recommendations?.archetype || '').replace('_', ' ')}</span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-4 border border-gray-100 dark:border-slate-700/50">
+                            <h6 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">LLM Reasoning</h6>
+                            <div class="text-[12px] text-gray-600 dark:text-slate-400 leading-relaxed whitespace-pre-line">
+                                ${(example.reasoning || '').replace(/\*\*(.*?)\*\*/g, '<strong class="text-gray-900 dark:text-slate-200">$1</strong>')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'text-block') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">${example.title || ''}</h5>
+                        <div class="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-5 border border-gray-100 dark:border-slate-700/50">
+                            <p class="text-[13px] text-gray-600 dark:text-slate-400 leading-relaxed whitespace-pre-line">${example.content || ''}</p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'storyline') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Scene-by-Scene Storyline</h5>
+                        <div class="space-y-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
+                            ${(example.scenes || []).map((s, i) => `
+                                <div class="flex gap-4 bg-gray-50 dark:bg-slate-900/50 rounded-xl p-4 border border-gray-100 dark:border-slate-700/50">
+                                    <div class="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-900/40 text-blue-600 dark:text-blue-300 rounded-full flex items-center justify-center font-bold text-xs">
+                                        ${i + 1}
+                                    </div>
+                                    <div>
+                                        <p class="text-[10px] font-bold text-blue-500 dark:text-blue-400 uppercase tracking-wider mb-1">${s.topic || ''}</p>
+                                        <p class="text-[12px] text-gray-600 dark:text-slate-400 leading-normal">${s.action || ''}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'character-asset') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Synthesized Character Asset (Identity Consistency)</h5>
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <div class="w-full md:w-2/3">
+                                <div class="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-2 border border-gray-100 dark:border-slate-700/50">
+                                    <img src="${example.collage}" alt="Character Collage" class="w-full h-auto rounded-lg">
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/3">
+                                <h6 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">Generation Prompt</h6>
+                                <div class="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-4 border border-gray-100 dark:border-slate-700/50">
+                                    <p class="text-[11px] text-gray-500 dark:text-slate-400 italic leading-relaxed">"${example.prompt || ''}"</p>
+                                </div>
+                                <div class="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-900/30">
+                                    <p class="text-[10px] text-blue-600 dark:text-blue-400 leading-tight">
+                                        <i class="fas fa-info-circle mr-1"></i>
+                                        This multi-view collage acts as a consistent visual prior for downstream video generation.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'storyboard') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Multimodal Storyboard (Generation Blueprint)</h5>
+                        
+                        <!-- Shot List -->
+                        <div class="space-y-4 max-h-[350px] overflow-y-auto pr-2 custom-scrollbar mb-6">
+                            ${(example.shots || []).map((s, i) => `
+                                <div class="bg-white dark:bg-slate-900/40 border border-gray-100 dark:border-slate-700/50 rounded-xl p-4">
+                                    <div class="flex items-center gap-2 mb-3">
+                                        <span class="text-[10px] font-bold bg-gray-100 dark:bg-slate-800 text-gray-500 px-2 py-0.5 rounded">SHOT ${i + 1}</span>
+                                        <span class="text-xs font-bold text-gray-900 dark:text-slate-200 uppercase tracking-wider">${s.topic || ''}</span>
+                                    </div>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                        <div>
+                                            <p class="text-[9px] font-bold text-gray-400 uppercase mb-1">Keyframe Prompt (Prior)</p>
+                                            <p class="text-[11px] text-gray-600 dark:text-slate-400 leading-tight">${s.frame || ''}</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-[9px] font-bold text-blue-400 uppercase mb-1">Video Generation Prompt</p>
+                                            <p class="text-[11px] text-gray-600 dark:text-slate-400 leading-tight">${s.video || ''}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <!-- Global Audio -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800/30 rounded-xl p-4">
+                                <h6 class="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest mb-2"><i class="fas fa-microphone mr-1"></i> Voiceover Prompt</h6>
+                                <p class="text-[11px] text-gray-600 dark:text-slate-400 italic leading-relaxed">"${example.audio?.voiceover || ''}"</p>
+                            </div>
+                            <div class="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-800/30 rounded-xl p-4">
+                                <h6 class="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase tracking-widest mb-2"><i class="fas fa-music mr-1"></i> Music Directive</h6>
+                                <p class="text-[11px] text-gray-600 dark:text-slate-400 leading-relaxed">${example.audio?.music || ''}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'keyframes') {
+                const html = `
+                    <div class="text-left">
+                        <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Generated Keyframe Sequence (Production Output)</h5>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                            ${(example.images || []).map((img, i) => `
+                                <div class="group relative aspect-[9/16] bg-gray-50 dark:bg-slate-900/50 rounded-lg border border-gray-100 dark:border-slate-700/50 overflow-hidden shadow-sm hover:shadow-md transition-all">
+                                    <img src="${img}" alt="Keyframe ${i}" class="w-full h-full object-cover">
+                                    <div class="absolute bottom-0 inset-x-0 bg-black/60 backdrop-blur-[2px] p-1.5 translate-y-full group-hover:translate-y-0 transition-transform">
+                                        <p class="text-[9px] text-white font-bold uppercase tracking-tighter text-center">Scene ${i}</p>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="mt-4 p-3 bg-emerald-50 dark:bg-emerald-900/20 rounded-lg border border-emerald-100 dark:border-emerald-900/30">
+                            <p class="text-[10px] text-emerald-600 dark:text-emerald-400 leading-tight text-center">
+                                <i class="fas fa-check-circle mr-1"></i>
+                                High-resolution keyframes provide strong visual conditioning for temporal video generation.
+                            </p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            } else if (example.type === 'evaluation') {
+                const html = `
+                    <div class="text-left">
+                        <div class="flex items-center justify-between mb-4">
+                            <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest">${example.title || (example.score >= 95 ? 'MLLM Joint Evaluation' : 'Storyline Optimization (Creative Gradient)')}</h5>
+                            <div class="flex items-center gap-2">
+                                <span class="text-[10px] font-bold text-gray-400 uppercase">Overall Score</span>
+                                <span class="text-xl font-bold text-emerald-500">${example.score || 0}%</span>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="space-y-3">
+                                ${Object.entries(example.breakdown || {}).map(([label, val]) => `
+                                    <div>
+                                        <div class="flex justify-between mb-1">
+                                            <span class="text-[10px] font-bold text-gray-500 uppercase">${label}</span>
+                                            <span class="text-[10px] font-bold text-gray-700 dark:text-slate-300">${val}/20</span>
+                                        </div>
+                                        <div class="w-full bg-gray-100 dark:bg-slate-800 rounded-full h-1.5">
+                                            <div class="bg-emerald-500 h-1.5 rounded-full" style="width: ${(val/20)*100}%"></div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div class="space-y-4">
+                                <div class="bg-gray-50 dark:bg-slate-900/50 rounded-xl p-4 border border-gray-100 dark:border-slate-700/50">
+                                    <h6 class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-2">Qualitative Feedback</h6>
+                                    <p class="text-[11px] text-gray-600 dark:text-slate-400 leading-relaxed">${example.feedback || ''}</p>
+                                </div>
+                                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 border border-blue-100 dark:border-blue-900/30">
+                                    <h6 class="text-[9px] font-bold text-blue-600 dark:text-blue-400 uppercase tracking-widest mb-2">Actionable Refinement</h6>
+                                    <p class="text-[11px] text-blue-700 dark:text-blue-300 leading-relaxed italic">"${example.actionable || ''}"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML = html;
+            }
+        }
+        function hideDetail() {
+            // Optional: Uncomment if you want it to reset on mouseout
+            // document.getElementById('detail-default').classList.remove('hidden');
+            // document.getElementById('detail-content').classList.add('hidden');
+        }
+
+        const sampleData = [
+            { 
+                name: 'BarBaz-Scrub', 
+                logo: './assets/genad_bench/05_logo.jpg', 
+                product: './assets/genad_bench/05_stereotypical_with_logo.jpg', 
+                prompt: 'BarBaz Inc. features BarBaz-Scrub (a cleaning tool combining an abrasive scouring surface with an absorbent foam body), targeting Male dads aged 35-50 in Cape Town, South Africa who are interested in cleaning BBQ grates for backyard grills.'
+            },
+            { 
+                name: 'FooTrent-Case', 
+                logo: './assets/genad_bench/72_logo.jpg', 
+                product: './assets/genad_bench/72_unconventional_with_logo.jpg', 
+                prompt: 'FooTrent Travel rolls FooTrent-Case (a wheeled hard-sided travel container), targeting Female DJs aged 18-24 in Ibiza, Spain who are interested in transporting DJ equipment in clubs.'
+            },
+            { 
+                name: 'Wandom-Yarn', 
+                logo: './assets/genad_bench/40_logo.jpg', 
+                product: './assets/genad_bench/40_unconventional_with_logo.jpg', 
+                prompt: 'Wandom Works displays Wandom-Yarn (spun fibers gathered into skeins or balls for textile work), targeting Male street artists aged 18-24 in Valparaiso, Chile who are interested in yarn bombing art in urban alleys.'
+            },
+            { 
+                name: 'FredBaz-Jam', 
+                logo: './assets/genad_bench/45_logo.jpg', 
+                product: './assets/genad_bench/45_stereotypical_with_logo.jpg', 
+                prompt: 'FredBaz Foods spreads FredBaz-Jam (fruit preserve spread packaged in a container), targeting Female bakers aged 50+ in Cornwall, UK who are interested in baking scones in country cottages.'
+            },
+            { 
+                name: 'FredBaz-Mix', 
+                logo: './assets/genad_bench/46_logo.jpg', 
+                product: './assets/genad_bench/46_stereotypical_with_logo.jpg', 
+                prompt: 'FredBaz Foods cooks FredBaz-Mix (dry batter blend packaged for preparation), targeting Male dads aged 35-50 in Toronto, Canada who are interested in cooking for family during Sunday breakfasts.'
+            },
+            { 
+                name: 'Xyzzy-Bear', 
+                logo: './assets/genad_bench/52_logo.jpg', 
+                product: './assets/genad_bench/52_unconventional_with_logo.jpg', 
+                prompt: 'Xyzzy Toys hugs Xyzzy-Bear (a stuffed animal figure with soft outer material), targeting Male collectors aged 50+ in Akihabara, Japan who are interested in toy collecting in display rooms.'
+            },
+            { 
+                name: 'EveFoo-Scoot', 
+                logo: './assets/genad_bench/64_logo.jpg', 
+                product: './assets/genad_bench/64_unconventional_with_logo.jpg', 
+                prompt: 'EveFoo Auto charges EveFoo-Scoot (a personal electric transport vehicle with handlebars and wheels), targeting Female seniors aged 50+ in Algarve, Portugal who are interested in visiting neighbors in retirement communities.'
+            },
+            { 
+                name: 'MaloyBaz-Mask', 
+                logo: './assets/genad_bench/71_logo.jpg', 
+                product: './assets/genad_bench/71_unconventional_with_logo.jpg', 
+                prompt: 'MaloyBaz Air relaxes with MaloyBaz-Mask (a fabric covering for eyes to aid sleep), targeting Male shift workers aged 35-50 in Tokyo, Japan who are interested in daytime sleeping for night shifts in homes.'
+            },
+            { 
+                name: 'Grault-Gown', 
+                logo: './assets/genad_bench/32_logo.jpg', 
+                product: './assets/genad_bench/32_stereotypical_with_logo.jpg', 
+                prompt: 'Grault Design drapes the Grault-Gown (an evening garment designed for formal or avant-garde occasions), targeting Female celebrities aged 25-34 in Cannes, France who are interested in galas and elegance on red carpets.'
+            }
+        ];
+
+        function showSampleDetail(index) {
+            const data = sampleData[index];
+            const viewer = document.getElementById('sample-detail-viewer');
+            const grid = document.getElementById('video-grid');
+            const items = grid.querySelectorAll('.sample-item');
+            
+            // Update Content
+            document.getElementById('detail-logo').src = data.logo;
+            document.getElementById('detail-product').src = data.product;
+            document.getElementById('detail-product-name').innerText = data.name;
+            document.getElementById('detail-prompt-text').innerText = `"${data.prompt}"`;
+            
+            // Determine insertion point based on responsive columns
+            let columns = 1;
+            if (window.innerWidth >= 1024) columns = 3;
+            else if (window.innerWidth >= 768) columns = 2;
+            
+            const rowIndex = Math.floor(index / columns);
+            const insertionIndex = Math.min((rowIndex + 1) * columns - 1, items.length - 1);
+            
+            // Move Viewer in DOM
+            items[insertionIndex].after(viewer);
+            
+            viewer.classList.remove('hidden');
+            viewer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function hideSampleDetail() {
+            document.getElementById('sample-detail-viewer').classList.add('hidden');
+        }
+
+        function switchArchetypeExample(exampleNum) {
+            const ex1 = document.getElementById('archetype-example-1');
+            const ex2 = document.getElementById('archetype-example-2');
+            const tab1 = document.getElementById('archetype-tab-1');
+            const tab2 = document.getElementById('archetype-tab-2');
+
+            if (exampleNum === 1) {
+                ex1.classList.remove('hidden');
+                ex2.classList.add('hidden');
+                tab1.className = "px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-blue-600 text-white shadow-lg";
+                tab2.className = "px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700";
+            } else {
+                ex1.classList.add('hidden');
+                ex2.classList.remove('hidden');
+                tab2.className = "px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-blue-600 text-white shadow-lg";
+                tab1.className = "px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700";
+            }
+        }
+
+        const metricDefinitions = {
+            'vaf': '<b>Visual Asset Fidelity (VAF):</b> Measures faithfulness to user-provided logos and products. The MLLM assesses visual-semantic similarity, ensuring core identity preservation across complex camera angles, occlusions, and dynamic lighting.',
+            'da': '<b>Demographic Alignment (DA):</b> Assesses targeting success across four variables (Gender, Age, Location, Interest). The MLLM penalizes generic aesthetics while rewarding tailored casting, localized environmental context, and narrative tone.',
+            'ma': '<b>Marketing Appeal (MA):</b> Evaluates advertisement persuasiveness via the AIDA hierarchy and engagement theory. It scores visual hooks, value proposition clarity, and emotional resonance.',
+            'vq': '<b>Visual Quality (VQ):</b> A prompt-agnostic metric scanning for diffusion artifacts, object morphing, and temporal flickering. It ensures videos meet broadcast viability by penalizing unnatural motion or violations of basic physical laws.'
+        };
+
+        function showMetric(id) {
+            const box = document.getElementById('metric-detail-box');
+            const text = document.getElementById('metric-definition');
+            text.innerHTML = metricDefinitions[id];
+            box.classList.remove('hidden');
+        }
+
+        function hideMetric() {
+            const box = document.getElementById('metric-detail-box');
+            box.classList.add('hidden');
+        }
+
+        function togglePrompt(id) {
+            // Deprecated - replaced by showSampleDetail
+        }
+
+        // ViStoryBench Browser Logic
+        let currentStoryId = '01';
+        let currentShotIndex = 0;
+
+        function initVistoryBrowser() {
+            const selectors = document.getElementById('vistory-selectors');
+            if (!selectors) return;
+            vistoryData.forEach((story) => {
+                const btn = document.createElement('button');
+                btn.innerText = `Story ${story.id}`;
+                btn.className = `vistory-story-btn px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${story.id === currentStoryId ? 'bg-blue-600 text-white shadow-lg' : 'bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700'}`;
+                btn.onclick = () => selectStory(story.id);
+                selectors.appendChild(btn);
+            });
+            selectStory('01');
+        }
+
+        function selectStory(id) {
+            currentStoryId = id;
+            currentShotIndex = 0;
+            
+            const story = vistoryData.find(s => s.id === currentStoryId);
+            document.getElementById('vistory-active-title').innerText = `${story.name}`;
+
+            document.querySelectorAll('.vistory-story-btn').forEach(btn => {
+                if (btn.innerText === `STORY ${id}`) {
+                    btn.className = "vistory-story-btn px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-blue-600 text-white shadow-lg";
+                } else {
+                    btn.className = "vistory-story-btn px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700";
+                }
+            });
+
+            renderThumbnails();
+            updateDetail();
+        }
+
+        function renderThumbnails() {
+            const container = document.getElementById('vistory-thumbnails');
+            if (!container) return;
+            container.innerHTML = '';
+            const story = vistoryData.find(s => s.id === currentStoryId);
+            story.shots.forEach((shot, idx) => {
+                const img = document.createElement('img');
+                img.src = shot.img;
+                img.className = `h-16 w-24 object-cover rounded-md cursor-pointer border-2 transition-all flex-shrink-0 ${idx === currentShotIndex ? 'border-blue-500 scale-105 shadow-md' : 'border-transparent opacity-70 hover:opacity-100'}`;
+                img.onclick = () => {
+                    currentShotIndex = idx;
+                    renderThumbnails();
+                    updateDetail();
+                };
+                container.appendChild(img);
+            });
+        }
+
+        function updateDetail() {
+            const story = vistoryData.find(s => s.id === currentStoryId);
+            const shot = story.shots[currentShotIndex];
+            const mainImg = document.getElementById('vistory-main-img');
+            const actionP = document.getElementById('vistory-action');
+            const plotP = document.getElementById('vistory-plot');
+            if (mainImg) mainImg.src = shot.img;
+            if (actionP) actionP.innerText = shot.action;
+            if (plotP) plotP.innerText = shot.plot;
+        }
+
+        window.addEventListener('load', () => {
+            initVistoryBrowser();
+        });
+    </script>
+</body>
+</html>
+
