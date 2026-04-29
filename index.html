@@ -1975,6 +1975,53 @@
         window.addEventListener('load', () => {
             initVistoryBrowser();
         });
+
+        // Global Video Observer: Mute videos when they scroll out of view
+        (function() {
+            const observerOptions = {
+                root: null,
+                threshold: 0 // Trigger as soon as the video is completely out of view
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        const video = entry.target;
+                        video.muted = true;
+                        
+                        // If it's a qualitative result video, reset its speed to 2x as well
+                        if (video.classList.contains('speed-2x')) {
+                            video.playbackRate = 2.0;
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            const setupObserver = () => {
+                // Observe all existing videos
+                document.querySelectorAll('video').forEach(v => observer.observe(v));
+
+                // Use MutationObserver to catch videos added dynamically (e.g., in the detail boxes)
+                const mutationObserver = new MutationObserver((mutations) => {
+                    mutations.forEach(mutation => {
+                        mutation.addedNodes.forEach(node => {
+                            if (node.nodeName === 'VIDEO') {
+                                observer.observe(node);
+                            } else if (node.querySelectorAll) {
+                                node.querySelectorAll('video').forEach(v => observer.observe(v));
+                            }
+                        });
+                    });
+                });
+                mutationObserver.observe(document.body, { childList: true, subtree: true });
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', setupObserver);
+            } else {
+                setupObserver();
+            }
+        })();
     </script>
 </body>
 </html>
