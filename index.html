@@ -541,6 +541,11 @@
                         v.playbackRate = 2.0;
 
                         v.addEventListener('mouseenter', function() {
+                            // Pause all other videos in the grid
+                            videos.forEach(other => {
+                                if (other !== v) other.pause();
+                            });
+
                             v.playbackRate = 1.0;
                             v.muted = false;
                             
@@ -558,6 +563,12 @@
                         v.addEventListener('mouseleave', function() {
                             v.playbackRate = 2.0;
                             v.muted = true;
+
+                            // Resume all other videos in the grid
+                            videos.forEach(other => {
+                                if (other !== v) other.play();
+                            });
+
                             v.play(); // Ensure it keeps playing at 2x
                         });
                     });
