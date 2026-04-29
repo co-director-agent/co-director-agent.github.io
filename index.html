@@ -310,10 +310,10 @@
 
         <!-- Links -->
         <div class="flex flex-wrap justify-center gap-8 text-lg font-medium mb-12">
-            <div class="px-8 py-3 rounded-full border border-gray-200 dark:border-slate-800 text-gray-400 dark:text-slate-600 flex items-center gap-3 cursor-not-allowed bg-gray-50/50 dark:bg-slate-900/50 italic">
+            <a href="https://arxiv.org/abs/2604.24842" target="_blank" class="px-8 py-3 rounded-full border border-gray-300 dark:border-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 hover:text-black dark:hover:text-white transition-all flex items-center gap-3 no-underline shadow-sm hover:shadow-md">
                 <i class="fa-regular fa-file-pdf"></i>
-                Paper (Coming Soon)
-            </div>
+                Paper
+            </a>
             <a href="https://github.com/GoogleCloudPlatform/genmedia-izumi-agent" target="_blank" class="px-8 py-3 rounded-full border border-gray-300 dark:border-slate-700 text-gray-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800 hover:text-black dark:hover:text-white transition-all flex items-center gap-3 no-underline shadow-sm hover:shadow-md">
                 <i class="fa-brands fa-github text-xl"></i>
                 Code
@@ -426,7 +426,7 @@
             We demonstrate Co-Director on digital advertising because it represents a rigorous "creative stress test" for generative AI. While abstract or experimental cinema often allows for loose visual interpretation, professional advertising requires high-fidelity creativity bound by absolute precision: brand identities must remain inviolable, product features must be visually consistent across disparate scenes, and the artistic direction must align with specific demographic expectations—all within a compressed narrative window.
         </p>
         <p class="text-center text-sm text-gray-500 italic mb-12">
-            Note: Videos are played at 2x speed; you can adjust playback settings and audio via the video controls for a better experience.
+            Note: Videos are played at 2x speed; hover over a video to play at 1x speed with audio.
         </p>
 
         <!-- 3x3 Video Grid -->
@@ -488,9 +488,9 @@
 
             <!-- Sample 6 -->
             <div class="flex flex-col sample-item">
-                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">Xyzzy-Bear</p>
+                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">Grault-Gown</p>
                 <div class="video-wrapper relative w-full aspect-[9/16] bg-black delicate-shadow rounded-2xl overflow-hidden mb-4 border border-gray-100 dark:border-slate-800">
-                    <video src="./assets/ad_examples/052_unconventional_iter_0_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                    <video src="./assets/ad_examples/032_stereotypical_iter_3_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
                 </div>
                 <button onclick="showSampleDetail(5)" class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors border border-blue-100 dark:border-blue-900/30 rounded-lg py-2 px-4 bg-white dark:bg-slate-800/50 delicate-shadow">
                     <i class="fas fa-expand-alt mr-2"></i> Input Prompt
@@ -521,9 +521,9 @@
 
             <!-- Sample 9 -->
             <div class="flex flex-col sample-item">
-                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">Grault-Gown</p>
+                <p class="text-center font-bold text-gray-900 dark:text-slate-200 mb-3 text-sm uppercase tracking-wide">Xyzzy-Bear</p>
                 <div class="video-wrapper relative w-full aspect-[9/16] bg-black delicate-shadow rounded-2xl overflow-hidden mb-4 border border-gray-100 dark:border-slate-800">
-                    <video src="./assets/ad_examples/032_stereotypical_iter_3_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                    <video src="./assets/ad_examples/052_unconventional_iter_0_final_video.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
                 </div>
                 <button onclick="showSampleDetail(8)" class="text-[10px] font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 hover:text-blue-700 transition-colors border border-blue-100 dark:border-blue-900/30 rounded-lg py-2 px-4 bg-white dark:bg-slate-800/50 delicate-shadow">
                     <i class="fas fa-expand-alt mr-2"></i> Input Prompt
@@ -531,38 +531,47 @@
             </div>
         </div>
 
-        <!-- Detail Viewer Template (Moves in DOM) -->
-        <div id="sample-detail-viewer" class="hidden col-span-full mb-12 bg-white dark:bg-slate-900 delicate-shadow rounded-3xl p-8 border border-blue-100 dark:border-blue-900/30 overflow-hidden relative">
-            <button onclick="hideSampleDetail()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600 dark:hover:text-slate-200 transition-colors">
-                <i class="fas fa-times text-2xl"></i>
-            </button>
-            <div class="flex flex-col lg:flex-row gap-10 items-center">
-                <!-- Large Images -->
-                <div class="flex gap-6 w-full lg:w-auto shrink-0">
-                    <div class="flex-1 lg:w-56 h-56 bg-white rounded-2xl border border-gray-100 dark:border-slate-800 p-6 flex items-center justify-center delicate-shadow">
-                        <img id="detail-logo" src="" class="max-w-full max-h-full object-contain">
-                    </div>
-                    <div class="flex-1 lg:w-56 h-56 bg-white rounded-2xl border border-gray-100 dark:border-slate-800 p-6 flex items-center justify-center delicate-shadow">
-                        <img id="detail-product" src="" class="max-w-full max-h-full object-contain">
-                    </div>
-                </div>
-                <!-- Text content -->
-                <div class="flex-1 text-center lg:text-left">
-                    <h4 id="detail-product-name" class="text-2xl font-bold text-gray-900 dark:text-slate-100 mb-4 uppercase tracking-widest underline decoration-blue-500 underline-offset-8 decoration-4">Product Name</h4>
-                    <p id="detail-prompt-text" class="text-xl text-gray-600 dark:text-slate-400 leading-relaxed italic font-light">"Prompt Text..."</p>
-                </div>
-            </div>
-        </div>
-
         <script>
             // Set all videos with class 'speed-2x' to 2.0x playback speed on load
-            document.addEventListener('DOMContentLoaded', function() {
-                const videos = document.querySelectorAll('video.speed-2x');
-                videos.forEach(v => {
-                    v.playbackRate = 2.0;
-                });
-            });
+            // and add hover functionality to change speed and mute state
+            (function() {
+                const initVideos = () => {
+                    const videos = document.querySelectorAll('video.speed-2x');
+                    videos.forEach(v => {
+                        v.playbackRate = 2.0;
+
+                        v.addEventListener('mouseenter', function() {
+                            v.playbackRate = 1.0;
+                            v.muted = false;
+                            
+                            // Defensive check: If unmuting triggers a pause (browser policy), 
+                            // attempt to resume. If blocked, re-mute and resume.
+                            const playPromise = v.play();
+                            if (playPromise !== undefined) {
+                                playPromise.catch(() => {
+                                    v.muted = true;
+                                    v.play();
+                                });
+                            }
+                        });
+
+                        v.addEventListener('mouseleave', function() {
+                            v.playbackRate = 2.0;
+                            v.muted = true;
+                            v.play(); // Ensure it keeps playing at 2x
+                        });
+                    });
+                };
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', initVideos);
+                } else {
+                    initVideos();
+                }
+            })();
         </script>
+
+        <!-- Detail Viewer Template (Moves in DOM) -->
     </section>
 
     <!-- GROUP 4: GenAD-Bench -->
@@ -1661,10 +1670,10 @@
                 prompt: 'FredBaz Foods cooks FredBaz-Mix (dry batter blend packaged for preparation), targeting Male dads aged 35-50 in Toronto, Canada who are interested in cooking for family during Sunday breakfasts.'
             },
             { 
-                name: 'Xyzzy-Bear', 
-                logo: './assets/genad_bench/52_logo.jpg', 
-                product: './assets/genad_bench/52_unconventional_with_logo.jpg', 
-                prompt: 'Xyzzy Toys hugs Xyzzy-Bear (a stuffed animal figure with soft outer material), targeting Male collectors aged 50+ in Akihabara, Japan who are interested in toy collecting in display rooms.'
+                name: 'Grault-Gown', 
+                logo: './assets/genad_bench/32_logo.jpg', 
+                product: './assets/genad_bench/32_stereotypical_with_logo.jpg', 
+                prompt: 'Grault Design drapes the Grault-Gown (an evening garment designed for formal or avant-garde occasions), targeting Female celebrities aged 25-34 in Cannes, France who are interested in galas and elegance on red carpets.'
             },
             { 
                 name: 'EveFoo-Scoot', 
@@ -1679,10 +1688,10 @@
                 prompt: 'MaloyBaz Air relaxes with MaloyBaz-Mask (a fabric covering for eyes to aid sleep), targeting Male shift workers aged 35-50 in Tokyo, Japan who are interested in daytime sleeping for night shifts in homes.'
             },
             { 
-                name: 'Grault-Gown', 
-                logo: './assets/genad_bench/32_logo.jpg', 
-                product: './assets/genad_bench/32_stereotypical_with_logo.jpg', 
-                prompt: 'Grault Design drapes the Grault-Gown (an evening garment designed for formal or avant-garde occasions), targeting Female celebrities aged 25-34 in Cannes, France who are interested in galas and elegance on red carpets.'
+                name: 'Xyzzy-Bear', 
+                logo: './assets/genad_bench/52_logo.jpg', 
+                product: './assets/genad_bench/52_unconventional_with_logo.jpg', 
+                prompt: 'Xyzzy Toys hugs Xyzzy-Bear (a stuffed animal figure with soft outer material), targeting Male collectors aged 50+ in Akihabara, Japan who are interested in toy collecting in display rooms.'
             }
         ];
 
@@ -1804,7 +1813,7 @@
                 const img = document.createElement('img');
                 img.src = shot.img;
                 img.className = `h-16 w-24 object-cover rounded-md cursor-pointer border-2 transition-all flex-shrink-0 ${idx === currentShotIndex ? 'border-blue-500 scale-105 shadow-md' : 'border-transparent opacity-70 hover:opacity-100'}`;
-                img.onclick = () => {
+                img.onmouseenter = () => {
                     currentShotIndex = idx;
                     renderThumbnails();
                     updateDetail();
