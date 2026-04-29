@@ -328,6 +328,77 @@
 
     </header>
 
+    <!-- Video Teaser Section -->
+    <div class="container-lg px-4 mb-6">
+        <p class="text-center text-xl md:text-2xl font-bold mx-auto tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-700 to-blue-800 dark:from-blue-400 dark:via-indigo-300 dark:to-blue-400">
+            Co-Director generates long-form video in a variety of cinematic styles by exploring diverse creative directions while maintaining rigorous semantic coherence.
+        </p>
+    </div>
+    <section class="container-lg px-4 mb-12">
+        <div class="w-full bg-white dark:bg-slate-900 delicate-shadow border border-gray-100 dark:border-slate-800 rounded-2xl p-6 text-center">
+            
+            <!-- Style Tabs -->
+            <div class="flex justify-center gap-4 mb-4" id="teaser-tabs">
+                <button onclick="switchTeaser(0)" id="teaser-tab-0" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-blue-600 text-white shadow-lg">Style 1</button>
+                <button onclick="switchTeaser(1)" id="teaser-tab-1" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">Style 2</button>
+                <button onclick="switchTeaser(2)" id="teaser-tab-2" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">Style 3</button>
+                <button onclick="switchTeaser(3)" id="teaser-tab-3" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">Style 4</button>
+            </div>
+
+            <!-- Video Title -->
+            <div class="mb-8">
+                <p id="teaser-title" class="text-gray-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-[0.1em]">
+                    Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Informational</span> | 
+                    Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Analytical</span> | 
+                    Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Minimalist Focus</span>
+                </p>
+            </div>
+
+            <!-- Video Display -->
+            <div class="max-w-4xl mx-auto mb-6">
+                <div class="aspect-video bg-black rounded-xl overflow-hidden border border-gray-100 dark:border-slate-800 shadow-inner">
+                    <video id="teaser-video" src="./assets/teaser_video/teaser_small_0.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover"></video>
+                </div>
+            </div>
+
+            <p class="text-[11px] text-gray-500 dark:text-slate-500 italic mb-6">
+                Note: All variations share the exact same input prompt. Co-Director autonomously "re-shoots" the narrative by navigating the different creative configurations shown above.
+            </p>
+
+            <!-- Input Prompt Expandable -->
+            <div class="max-w-4xl mx-auto text-left">
+                <details class="group bg-gray-50/50 dark:bg-slate-800/50 rounded-xl border border-gray-100 dark:border-slate-800 overflow-hidden transition-all duration-300">
+                    <summary class="list-none cursor-pointer p-4 flex items-center justify-between hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors">
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-slate-400 flex items-center gap-2">
+                            <i class="fas fa-terminal text-blue-500"></i>
+                            Input Prompt
+                        </span>
+                        <i class="fas fa-chevron-down text-gray-400 group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <div class="p-6 border-t border-gray-100 dark:border-slate-800">
+                        <div class="mb-8">
+                            <h4 class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-3">System Text Input</h4>
+                            <p class="text-sm text-gray-600 dark:text-slate-300 leading-relaxed italic bg-white dark:bg-slate-900 p-4 rounded-lg border border-gray-100 dark:border-slate-800">
+                                Most generative video tools are great at creating a single "cool shot," but they struggle to tell a consistent story. Small errors in the script often cascade into "identity drift" or broken logic by the final frame. At Google, we wanted to move beyond the linear "waterfall" approach to video generation. We are excited to share Co-Director, a multi-agent framework that formalizes video storytelling as a global optimization problem. Instead of just stringing clips together, it functions like a professional film crew to ensure visual and narrative coherence from start to finish. What’s happening under the hood? The Orchestrator: Uses "Multi-Armed Bandit" logic to steer the creative direction. It balances exploring bold new narrative ideas with "exploiting" configurations that it knows will land with the target audience. Hierarchical Factoring: We don't just give the AI a generic prompt. We disentangle the "vibe" into three axes: Creative Strategy (the message), Narrative Mode (the delivery), and Aesthetic Archetype (the visual look). Local Self-Refinement: A multimodal feedback loop acts as a built-in auditor, catching and correcting inconsistencies—like a character’s hair color changing or a product teleporting between scenes—before the final render. To test this, we developed GenAD-Bench: a rigorous new benchmark featuring 400 scenarios across 200 fictional products. By mastering the strict constraints of advertising—brand fidelity, demographics, and tight runtimes—Co-Director proves it can handle almost any cinematic storytelling task.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-3">Reference Visuals</h4>
+                            <div class="flex flex-col md:flex-row gap-4">
+                                <div class="md:w-[30%] bg-white dark:bg-slate-900 p-4 rounded-xl border border-gray-100 dark:border-slate-800 flex items-center justify-center">
+                                    <img src="assets/logo.png" alt="Co-Director Logo" class="max-h-48 w-auto object-contain">
+                                </div>
+                                <div class="md:w-[70%] bg-white dark:bg-slate-900 p-4 rounded-xl border border-gray-100 dark:border-slate-800 flex items-center justify-center">
+                                    <img src="assets/pipeline.jpg" alt="System Pipeline" class="max-h-48 w-auto object-contain">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
     <!-- GROUP 2: Introduction -->
     <section class="container-lg px-4 mb-24">
         <h2 class="text-xs uppercase tracking-[0.2em] font-semibold text-gray-400 mb-6 text-center">Abstract</h2>
@@ -1794,6 +1865,46 @@
 
         function togglePrompt(id) {
             // Deprecated - replaced by showSampleDetail
+        }
+
+        // Teaser Video Switcher
+        const teaserData = [
+            {
+                video: "./assets/teaser_video/teaser_small_0.mp4",
+                title: 'Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Informational</span> | Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Analytical</span> | Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Minimalist Focus</span>'
+            },
+            {
+                video: "./assets/teaser_video/teaser_small_1.mp4", 
+                title: 'Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Transformational</span> | Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Vignette</span> | Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Cinematic Premium</span>'
+            },
+            {
+                video: "./assets/teaser_video/teaser_small_2.mp4", 
+                title: 'Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Comparative</span> | Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Narrative Drama</span> | Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Kinetic Grit</span>'
+            },
+            {
+                video: "./assets/teaser_video/teaser_small_3.mp4", 
+                title: 'Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Transformational</span> | Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Vignette</span> | Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Clarity / Energy</span>'
+            }
+        ];
+
+        function switchTeaser(index) {
+            const video = document.getElementById('teaser-video');
+            const title = document.getElementById('teaser-title');
+            const tabs = document.querySelectorAll('#teaser-tabs button');
+
+            if (teaserData[index].video) {
+                video.src = teaserData[index].video;
+                video.play();
+            }
+            title.innerHTML = teaserData[index].title;
+
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.className = "px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-blue-600 text-white shadow-lg";
+                } else {
+                    tab.className = "px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700";
+                }
+            });
         }
 
         // ViStoryBench Browser Logic
