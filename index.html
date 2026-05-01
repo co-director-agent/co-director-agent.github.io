@@ -655,6 +655,48 @@
         </script>
 
         <!-- Detail Viewer Template (Moves in DOM) -->
+        <div id="sample-detail-viewer" class="hidden col-span-full mt-8 mb-12 bg-white dark:bg-slate-900 delicate-shadow border border-gray-100 dark:border-slate-800 rounded-2xl overflow-hidden transition-all duration-500">
+            <div class="relative p-8">
+                <button onclick="hideSampleDetail()" class="absolute top-6 right-6 p-2 rounded-full bg-gray-50 dark:bg-slate-800 text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                    <i class="fas fa-times"></i>
+                </button>
+                
+                <div class="flex flex-col md:flex-row gap-8">
+                    <!-- Left: Reference Visuals -->
+                    <div class="w-full md:w-1/3 space-y-6">
+                        <div>
+                            <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Brand Identity</h4>
+                            <div class="bg-gray-50 dark:bg-slate-800 p-4 rounded-xl border border-gray-100 dark:border-slate-700 flex items-center justify-center">
+                                <img id="detail-logo" src="" alt="Brand Logo" class="max-h-24 w-auto object-contain">
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Product Reference</h4>
+                            <div class="bg-gray-50 dark:bg-slate-800 p-4 rounded-xl border border-gray-100 dark:border-slate-700">
+                                <img id="detail-product" src="" alt="Product" class="w-full h-auto rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Prompt Content -->
+                    <div class="w-full md:w-2/3 flex flex-col justify-center">
+                        <div class="mb-6">
+                            <span class="inline-block px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase tracking-widest border border-blue-100 dark:border-blue-900/30 mb-4">Targeting Strategy</span>
+                            <h3 id="detail-product-name" class="text-2xl font-bold text-gray-900 dark:text-white mb-4"></h3>
+                            <div class="h-1 w-12 bg-blue-500 rounded-full mb-6"></div>
+                        </div>
+                        
+                        <div class="bg-gray-50/50 dark:bg-slate-800/50 p-6 rounded-2xl border border-gray-100 dark:border-slate-800">
+                            <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
+                                <i class="fas fa-quote-left text-blue-500"></i>
+                                Semantic Input Prompt
+                            </h4>
+                            <p id="detail-prompt-text" class="text-gray-700 dark:text-slate-200 text-lg font-light leading-relaxed italic"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- GROUP 4: GenAD-Bench -->
@@ -1742,55 +1784,55 @@
             { 
                 name: 'BarBaz-Scrub', 
                 logo: './assets/genad_bench/05_logo.jpg', 
-                product: './assets/genad_bench/05_stereotypical_with_logo.jpg', 
+                product: './assets/genad_bench/05_stereotypical.jpg', 
                 prompt: 'BarBaz Inc. features BarBaz-Scrub (a cleaning tool combining an abrasive scouring surface with an absorbent foam body), targeting Male dads aged 35-50 in Cape Town, South Africa who are interested in cleaning BBQ grates for backyard grills.'
             },
             { 
                 name: 'FooTrent-Case', 
                 logo: './assets/genad_bench/72_logo.jpg', 
-                product: './assets/genad_bench/72_unconventional_with_logo.jpg', 
+                product: './assets/genad_bench/72_unconventional.jpg', 
                 prompt: 'FooTrent Travel rolls FooTrent-Case (a wheeled hard-sided travel container), targeting Female DJs aged 18-24 in Ibiza, Spain who are interested in transporting DJ equipment in clubs.'
             },
             { 
                 name: 'Wandom-Yarn', 
                 logo: './assets/genad_bench/40_logo.jpg', 
-                product: './assets/genad_bench/40_unconventional_with_logo.jpg', 
+                product: './assets/genad_bench/40_unconventional.jpg', 
                 prompt: 'Wandom Works displays Wandom-Yarn (spun fibers gathered into skeins or balls for textile work), targeting Male street artists aged 18-24 in Valparaiso, Chile who are interested in yarn bombing art in urban alleys.'
             },
             { 
                 name: 'FredBaz-Jam', 
                 logo: './assets/genad_bench/45_logo.jpg', 
-                product: './assets/genad_bench/45_stereotypical_with_logo.jpg', 
+                product: './assets/genad_bench/45_stereotypical.jpg', 
                 prompt: 'FredBaz Foods spreads FredBaz-Jam (fruit preserve spread packaged in a container), targeting Female bakers aged 50+ in Cornwall, UK who are interested in baking scones in country cottages.'
             },
             { 
                 name: 'FredBaz-Mix', 
                 logo: './assets/genad_bench/46_logo.jpg', 
-                product: './assets/genad_bench/46_stereotypical_with_logo.jpg', 
+                product: './assets/genad_bench/46_stereotypical.jpg', 
                 prompt: 'FredBaz Foods cooks FredBaz-Mix (dry batter blend packaged for preparation), targeting Male dads aged 35-50 in Toronto, Canada who are interested in cooking for family during Sunday breakfasts.'
             },
             { 
                 name: 'Grault-Gown', 
                 logo: './assets/genad_bench/32_logo.jpg', 
-                product: './assets/genad_bench/32_stereotypical_with_logo.jpg', 
+                product: './assets/genad_bench/32_stereotypical.jpg', 
                 prompt: 'Grault Design drapes the Grault-Gown (an evening garment designed for formal or avant-garde occasions), targeting Female celebrities aged 25-34 in Cannes, France who are interested in galas and elegance on red carpets.'
             },
             { 
                 name: 'EveFoo-Scoot', 
                 logo: './assets/genad_bench/64_logo.jpg', 
-                product: './assets/genad_bench/64_unconventional_with_logo.jpg', 
+                product: './assets/genad_bench/64_unconventional.jpg', 
                 prompt: 'EveFoo Auto charges EveFoo-Scoot (a personal electric transport vehicle with handlebars and wheels), targeting Female seniors aged 50+ in Algarve, Portugal who are interested in visiting neighbors in retirement communities.'
             },
             { 
                 name: 'MaloyBaz-Mask', 
                 logo: './assets/genad_bench/71_logo.jpg', 
-                product: './assets/genad_bench/71_unconventional_with_logo.jpg', 
+                product: './assets/genad_bench/71_unconventional.jpg', 
                 prompt: 'MaloyBaz Air relaxes with MaloyBaz-Mask (a fabric covering for eyes to aid sleep), targeting Male shift workers aged 35-50 in Tokyo, Japan who are interested in daytime sleeping for night shifts in homes.'
             },
             { 
                 name: 'Xyzzy-Bear', 
                 logo: './assets/genad_bench/52_logo.jpg', 
-                product: './assets/genad_bench/52_unconventional_with_logo.jpg', 
+                product: './assets/genad_bench/52_unconventional.jpg', 
                 prompt: 'Xyzzy Toys hugs Xyzzy-Bear (a stuffed animal figure with soft outer material), targeting Male collectors aged 50+ in Akihabara, Japan who are interested in toy collecting in display rooms.'
             }
         ];
