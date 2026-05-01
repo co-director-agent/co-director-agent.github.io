@@ -343,6 +343,7 @@
                 <button onclick="switchTeaser(1)" id="teaser-tab-1" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">Style 2</button>
                 <button onclick="switchTeaser(2)" id="teaser-tab-2" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">Style 3</button>
                 <button onclick="switchTeaser(3)" id="teaser-tab-3" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">Style 4</button>
+                <button onclick="switchTeaser(4)" id="teaser-tab-4" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">Style 5</button>
             </div>
 
             <!-- Video Title -->
@@ -350,14 +351,14 @@
                 <p id="teaser-title" class="text-gray-400 dark:text-slate-500 text-[10px] font-bold uppercase tracking-[0.1em]">
                     Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Informational</span> | 
                     Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Analytical</span> | 
-                    Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Minimalist Focus</span>
+                    Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Clarity / Energy</span>
                 </p>
             </div>
 
             <!-- Video Display -->
             <div class="max-w-4xl mx-auto mb-6">
                 <div class="aspect-video bg-black rounded-xl overflow-hidden border border-gray-100 dark:border-slate-800 shadow-inner">
-                    <video id="teaser-video" src="./assets/teaser_video/teaser_small_0.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover"></video>
+                    <video id="teaser-video" src="./assets/teaser_video/teaser_style_1.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover"></video>
                 </div>
             </div>
 
@@ -1870,19 +1871,23 @@
         // Teaser Video Switcher
         const teaserData = [
             {
-                video: "./assets/teaser_video/teaser_small_0.mp4",
-                title: 'Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Informational</span> | Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Analytical</span> | Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Minimalist Focus</span>'
+                video: "./assets/teaser_video/teaser_style_1.mp4",
+                title: 'Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Informational</span> | Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Analytical</span> | Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Clarity / Energy</span>'
             },
             {
-                video: "./assets/teaser_video/teaser_small_1.mp4", 
+                video: "./assets/teaser_video/teaser_style_2.mp4", 
                 title: 'Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Transformational</span> | Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Vignette</span> | Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Cinematic Premium</span>'
             },
             {
-                video: "./assets/teaser_video/teaser_small_2.mp4", 
+                video: "./assets/teaser_video/teaser_style_3.mp4",
+                title: 'Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Informational</span> | Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Analytical</span> | Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Minimalist Focus</span>'
+            },
+            {
+                video: "./assets/teaser_video/teaser_style_4.mp4", 
                 title: 'Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Comparative</span> | Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Narrative Drama</span> | Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Kinetic Grit</span>'
             },
             {
-                video: "./assets/teaser_video/teaser_small_3.mp4", 
+                video: "./assets/teaser_video/teaser_style_5.mp4", 
                 title: 'Creative Strategy: <span class="text-blue-600 dark:text-blue-400">Transformational</span> | Narrative Mode: <span class="text-purple-600 dark:text-purple-400">Vignette</span> | Aesthetic Archetype: <span class="text-emerald-600 dark:text-emerald-400">Clarity / Energy</span>'
             }
         ];
