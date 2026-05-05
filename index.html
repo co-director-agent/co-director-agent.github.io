@@ -603,57 +603,6 @@
             </div>
         </div>
 
-        <script>
-            // Set all videos with class 'speed-2x' to 2.0x playback speed on load
-            // and add hover functionality to change speed and mute state
-            (function() {
-                const initVideos = () => {
-                    const videos = document.querySelectorAll('video.speed-2x');
-                    videos.forEach(v => {
-                        v.playbackRate = 2.0;
-
-                        v.addEventListener('mouseenter', function() {
-                            // Pause all other videos in the grid
-                            videos.forEach(other => {
-                                if (other !== v) other.pause();
-                            });
-
-                            v.playbackRate = 1.0;
-                            v.muted = false;
-                            
-                            // Defensive check: If unmuting triggers a pause (browser policy), 
-                            // attempt to resume. If blocked, re-mute and resume.
-                            const playPromise = v.play();
-                            if (playPromise !== undefined) {
-                                playPromise.catch(() => {
-                                    v.muted = true;
-                                    v.play();
-                                });
-                            }
-                        });
-
-                        v.addEventListener('mouseleave', function() {
-                            v.playbackRate = 2.0;
-                            v.muted = true;
-
-                            // Resume all other videos in the grid
-                            videos.forEach(other => {
-                                if (other !== v) other.play();
-                            });
-
-                            v.play(); // Ensure it keeps playing at 2x
-                        });
-                    });
-                };
-
-                if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', initVideos);
-                } else {
-                    initVideos();
-                }
-            })();
-        </script>
-
         <!-- Detail Viewer Template (Moves in DOM) -->
         <div id="sample-detail-viewer" class="hidden col-span-full mt-8 mb-12 bg-white dark:bg-slate-900 delicate-shadow border border-gray-100 dark:border-slate-800 rounded-2xl overflow-hidden transition-all duration-500">
             <div class="relative p-8">
@@ -927,6 +876,32 @@
                 </table>
                 <p class="text-[10px] text-gray-500 dark:text-slate-500 mt-4 italic text-justify px-4">Average of 5 human raters per video on a [1–5] scale.</p>
             </div>
+        </div>
+    </section>
+
+    <!-- Qualitative Side-by-Side Comparison -->
+    <section class="container-lg px-4 mb-24">
+        <h3 class="text-xl font-medium text-gray-900 dark:text-slate-100 mb-6 md:text-center uppercase tracking-wider">Qualitative Side-by-Side Comparison</h3>
+        <p class="text-gray-600 dark:text-slate-400 leading-relaxed text-lg text-justify font-light max-w-3xl mx-auto mb-12">
+            We compare Co-Director against several state-of-the-art generative video models across diverse scenarios. Use the tabs below to explore different products and choose a competitor model for side-by-side comparison.
+        </p>
+
+        <!-- Scenario Selection Tabs -->
+        <div class="flex flex-wrap justify-center gap-2 mb-6" id="sxs-scenario-tabs">
+            <!-- Dynamically populated -->
+        </div>
+
+        <!-- Model Selection Tabs -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12" id="sxs-model-tabs">
+            <button onclick="switchSxSModel('ltx-2.3-22b')" id="sxs-tab-ltx-2.3-22b" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-blue-600 text-white shadow-lg">LTX-2.3</button>
+            <button onclick="switchSxSModel('wan-2.6')" id="sxs-tab-wan-2.6" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">Wan 2.6</button>
+            <button onclick="switchSxSModel('kling-video-o3-pro')" id="sxs-tab-kling-video-o3-pro" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">Kling 3.0 Omni</button>
+            <button onclick="switchSxSModel('creatify')" id="sxs-tab-creatify" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">Creatify</button>
+            <button onclick="switchSxSModel('heygen')" id="sxs-tab-heygen" class="px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700">HeyGen</button>
+        </div>
+
+        <div id="sxs-container" class="space-y-16">
+            <!-- Rows will be injected here -->
         </div>
     </section>
 
@@ -2019,8 +1994,227 @@
             if (plotP) plotP.innerText = shot.plot;
         }
 
+        const sxsData = [
+            {
+                id: 10,
+                brand: "FooBaz Ltd.",
+                product: "FooBaz-Blend",
+                type: "stereotypical",
+                prompt: "FooBaz Ltd. markets the FooBaz-Blend (a motorized appliance with a container and blades for liquefying or mixing ingredients), targeting Female yogis aged 25-34 in Lisbon, Portugal who are interested in health smoothies and detox at juice bars."
+            },
+            {
+                id: 19,
+                brand: "BazQux LLC",
+                product: "BazQux-Oil",
+                type: "stereotypical",
+                prompt: "BazQux LLC demonstrates BazQux-Oil (a conditioning oil packaged in a dispenser bottle), targeting Male gentlemen aged 35-50 in Marrakech, Morocco who are interested in grooming and sophistication in studies."
+            },
+            {
+                id: 38,
+                brand: "Garply Gear",
+                product: "Garply-Lantern",
+                type: "stereotypical",
+                prompt: "Garply Gear lights up with Garply-Lantern (a portable lighting device for illumination in dark environments), targeting Female campers aged 35-50 in Nelspruit, South Africa who are interested in lighting the tent in family campsites."
+            },
+            {
+                id: 50,
+                brand: "Plugh Care",
+                product: "Plugh-Dry",
+                type: "unconventional",
+                prompt: "Plugh Care sprays Plugh-Dry (powder-based hair refresher spray in a pressurized canister), targeting Male backpackers aged 18-24 in Bangkok, Thailand who are interested in backpacking without water in hostels."
+            },
+            {
+                id: 82,
+                brand: "Ipsum Tech",
+                product: "Ipsum-Speak",
+                type: "stereotypical",
+                prompt: "Ipsum Tech blasts Ipsum-Speak (portable audio projection unit with wireless connectivity), targeting Male students aged 18-24 in Bondi Beach, Australia who are interested in loud music at beach parties."
+            },
+            {
+                id: 106,
+                brand: "Sed Snacks",
+                product: "Sed-Corn",
+                type: "stereotypical",
+                prompt: "Sed Snacks pops Sed-Corn (popped corn kernels prepared with butter or seasoning), targeting Female daters aged 18-24 in Seoul, South Korea who are interested in movie dates in cinemas."
+            },
+            {
+                id: 119,
+                brand: "LoremBeta Systems",
+                product: "LoremBeta-Sport",
+                type: "unconventional",
+                prompt: "LoremBeta Systems endures with LoremBeta-Sport (durable digital wristwatch designed for rugged environments), targeting Female potters aged 35-50 in Santa Fe, New Mexico who are interested in clay-proof gear in pottery studios."
+            },
+            {
+                id: 162,
+                brand: "Beggy Bay",
+                product: "Beggy-Tea",
+                type: "unconventional",
+                prompt: "Beggy Bay arranges Beggy-Tea (small, flat candles encased in thin metal or plastic cups), targeting Male campers aged 50+ in Reykjavik, Iceland who are interested in emergency light in camping tents."
+            }
+        ];
+
+        let currentSxSModel = 'ltx-2.3-22b';
+        let currentScenarioId = 10;
+
+        function initSxS() {
+            const container = document.getElementById('sxs-container');
+            const scenarioTabs = document.getElementById('sxs-scenario-tabs');
+            if (!container || !scenarioTabs) return;
+            
+            // Populate Scenario Tabs
+            sxsData.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.id = `sxs-scenario-tab-${item.id}`;
+                btn.innerText = item.product;
+                btn.onclick = () => switchSxSScenario(item.id);
+                btn.className = `px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${item.id === currentScenarioId ? 'bg-blue-600 text-white shadow-lg' : 'bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700'}`;
+                scenarioTabs.appendChild(btn);
+            });
+
+            renderSxSRow();
+        }
+
+        function renderSxSRow() {
+            const container = document.getElementById('sxs-container');
+            const item = sxsData.find(d => d.id === currentScenarioId);
+            if (!container || !item) return;
+
+            const idStr = String(item.id).padStart(3, '0');
+            const imgIdStr = item.id < 100 ? String(item.id).padStart(2, '0') : String(item.id);
+            
+            let modelDisplayName = currentSxSModel;
+            if (currentSxSModel === 'wan-2.6') modelDisplayName = 'Wan 2.6';
+            if (currentSxSModel === 'kling-video-o3-pro') modelDisplayName = 'Kling 3.0 Omni';
+            if (currentSxSModel === 'heygen') modelDisplayName = 'HeyGen';
+            if (currentSxSModel === 'creatify') modelDisplayName = 'Creatify';
+            if (currentSxSModel === 'ltx-2.3-22b') modelDisplayName = 'LTX-2.3';
+
+            container.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+                    <!-- Left: Input Context (3-level vertical) -->
+                    <div class="flex flex-col h-full">
+                        <p class="text-center font-bold text-gray-500 mb-3 text-[10px] uppercase tracking-widest">Input Context</p>
+                        <div class="flex-grow flex flex-col gap-4">
+                            <!-- Prompt -->
+                            <div class="h-24 bg-gray-50 dark:bg-slate-800/50 p-4 rounded-xl border border-gray-100 dark:border-slate-800 flex flex-col overflow-y-auto custom-scrollbar">
+                                <h4 class="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-1">Input Prompt</h4>
+                                <p class="text-[10px] text-gray-600 dark:text-slate-400 leading-tight italic">"${item.prompt}"</p>
+                            </div>
+                            <!-- Logo -->
+                            <div class="flex-1 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-gray-100 dark:border-slate-800 delicate-shadow flex flex-col items-center justify-center overflow-hidden">
+                                <div class="w-full h-full flex items-center justify-center">
+                                    <img src="assets/genad_bench/${imgIdStr}_logo.jpg" class="w-[85%] h-full object-contain rounded-xl">
+                                </div>
+                                <span class="text-[7px] font-bold text-gray-400 uppercase tracking-widest mt-1">Brand Logo</span>
+                            </div>
+                            <!-- Product -->
+                            <div class="flex-1 bg-white dark:bg-slate-900 p-4 rounded-2xl border border-gray-100 dark:border-slate-800 delicate-shadow flex flex-col items-center justify-center overflow-hidden">
+                                <div class="w-full h-full flex items-center justify-center">
+                                    <img src="assets/genad_bench/${imgIdStr}_${item.type}.jpg" class="w-[85%] h-full object-contain rounded-xl">
+                                </div>
+                                <span class="text-[7px] font-bold text-gray-400 uppercase tracking-widest mt-1">Product Reference</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Middle: Co-Director -->
+                    <div class="flex flex-col h-full">
+                        <p class="text-center font-bold text-blue-600 dark:text-blue-400 mb-3 text-[10px] uppercase tracking-widest">Co-Director (Ours)</p>
+                        <div class="flex-grow aspect-[9/16] bg-black rounded-2xl overflow-hidden delicate-shadow border-2 border-blue-500/20 shadow-[0_0_20px_rgba(59,130,246,0.1)]">
+                            <video src="assets/qualitative_sxs/${idStr}_${item.type}_cod.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                        </div>
+                    </div>
+                    <!-- Right: Competitor -->
+                    <div class="flex flex-col h-full">
+                        <p class="text-center font-bold text-gray-500 mb-3 text-[10px] uppercase tracking-widest">${modelDisplayName}</p>
+                        <div class="flex-grow aspect-[9/16] bg-black rounded-2xl overflow-hidden delicate-shadow border border-gray-100 dark:border-slate-800">
+                            <video src="assets/qualitative_sxs/${idStr}_${item.type}_${currentSxSModel}.mp4" autoplay loop muted playsinline controls class="w-full h-full object-cover speed-2x"></video>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Re-apply speed control to new videos
+            container.querySelectorAll('video.speed-2x').forEach(setupVideoSpeedControl);
+        }
+
+        function switchSxSScenario(id) {
+            currentScenarioId = id;
+            
+            // Update Tab Styling
+            const tabs = document.querySelectorAll('#sxs-scenario-tabs button');
+            tabs.forEach(tab => {
+                if (tab.id === `sxs-scenario-tab-${id}`) {
+                    tab.className = "px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-blue-600 text-white shadow-lg";
+                } else {
+                    tab.className = "px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700";
+                }
+            });
+
+            renderSxSRow();
+        }
+
+        function switchSxSModel(model) {
+            currentSxSModel = model;
+            
+            // Update Model Tab Styling
+            const tabs = document.querySelectorAll('#sxs-model-tabs button');
+            tabs.forEach(tab => {
+                if (tab.id === `sxs-tab-${model}`) {
+                    tab.className = "px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-blue-600 text-white shadow-lg";
+                } else {
+                    tab.className = "px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all bg-gray-100 dark:bg-slate-800 text-gray-500 dark:text-slate-400 hover:bg-gray-200 dark:hover:bg-slate-700";
+                }
+            });
+
+            renderSxSRow();
+        }
+
+        // Speed Control logic for speed-2x videos
+        function setupVideoSpeedControl(video) {
+            if (!video.classList.contains('speed-2x') || video.dataset.speedHandled) return;
+            video.dataset.speedHandled = "true";
+            
+            video.playbackRate = 2.0;
+
+            video.addEventListener('mouseenter', function() {
+                // Pause all other videos with speed-2x in the same context if needed, 
+                // but for SxS we might just want to focus on the hovered one.
+                document.querySelectorAll('video.speed-2x').forEach(other => {
+                    if (other !== video) other.pause();
+                });
+
+                video.playbackRate = 1.0;
+                video.muted = false;
+                video.currentTime = 0;
+                
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        video.muted = true;
+                        video.play();
+                    });
+                }
+            });
+
+            video.addEventListener('mouseleave', function() {
+                video.playbackRate = 2.0;
+                video.muted = true;
+
+                // Resume all other speed-2x videos
+                document.querySelectorAll('video.speed-2x').forEach(other => {
+                    if (other !== video) other.play();
+                });
+
+                video.play(); 
+            });
+        }
+
         window.addEventListener('load', () => {
             initVistoryBrowser();
+            initSxS();
+            
+            // Initial setup for speed-2x videos
+            document.querySelectorAll('video.speed-2x').forEach(setupVideoSpeedControl);
         });
 
         // Global Video Observer: Mute videos when they scroll out of view
@@ -2046,7 +2240,10 @@
 
             const setupObserver = () => {
                 // Observe all existing videos
-                document.querySelectorAll('video').forEach(v => observer.observe(v));
+                document.querySelectorAll('video').forEach(v => {
+                    observer.observe(v);
+                    setupVideoSpeedControl(v); // Also ensure speed control is set
+                });
 
                 // Use MutationObserver to catch videos added dynamically (e.g., in the detail boxes)
                 const mutationObserver = new MutationObserver((mutations) => {
@@ -2054,8 +2251,12 @@
                         mutation.addedNodes.forEach(node => {
                             if (node.nodeName === 'VIDEO') {
                                 observer.observe(node);
+                                setupVideoSpeedControl(node);
                             } else if (node.querySelectorAll) {
-                                node.querySelectorAll('video').forEach(v => observer.observe(v));
+                                node.querySelectorAll('video').forEach(v => {
+                                    observer.observe(v);
+                                    setupVideoSpeedControl(v);
+                                });
                             }
                         });
                     });
